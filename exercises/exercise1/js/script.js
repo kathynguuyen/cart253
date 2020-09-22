@@ -18,7 +18,9 @@ let circle = {
   x:50,
   y:250,
   size: 100,
-  fill: 50
+  fillr: 0,
+  fillg: 162,
+  fillb: 255
 };
 
 let rectangle = {
@@ -26,15 +28,20 @@ let rectangle = {
   y: 250,
   width: 50,
   height: 100,
-  fill: 50
+  fillr: 201,
+  fillg: 36,
+  fillb: 36
 
 };
 
 let square = {
-  x: 100,
-  y: 250,
+  x: 200,
+  y: 100,
   size: 60,
-  fill : 50
+  fillr: 0,
+  fillg: 163,
+  fillb: 52
+
 
 };
 
@@ -60,16 +67,16 @@ function draw() {
 
 
   // circle
-  fill(circle.fill);
+  fill(circle.fillr,circle.fillg,circle.fillb);
   ellipse(circle.x,circle.y,circle.size);
 
 
   // rectangle
-  fill(rectangle.fill);
+  fill(rectangle.fillr,rectangle.fillb,rectangle.fillg);
   rect(rectangle.x,rectangle.y,rectangle.width,rectangle.height);
 
   // square
-  fill(square.fill);
+  fill(square.fillr,square.fillg,square.fillb);
   rect(square.x,square.y,square.size);
 
 }
