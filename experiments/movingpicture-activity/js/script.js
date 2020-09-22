@@ -52,12 +52,15 @@ function draw() {
   fill(circle1.fill,circle1.alpha);
   circle1.x += 1;
   circle1.x = constrain(circle1.x,0,250);
+  circle1.size = circle1.size + 1;
+  circle1.size = constrain(circle1.size,0,500);
   ellipse(circle1.x,circle1.y,circle1.size);
 
   // right circle
   fill(circle2.fill,circle2.alpha);
   circle2.x -= 1;
   circle2.x = constrain(circle2.x,250,500);
+  circle2.size = circle1.size * 0.75;
   ellipse(circle2.x,circle2.y,circle2.size);
 
 }
