@@ -82,8 +82,11 @@ function draw() {
   // rectangle
   fill(rectangle.fillr,rectangle.fillb,rectangle.fillg);
 
-  //rectangle becomes more red
-  rectangle.fillr +=1;
+  //rectangle randomly changes color
+  rectangle.fillr = random(0,255);
+  rectangle.fillg = random(0,255);
+  rectangle.fillb = random(0,255);
+
 
   //rectangle movement
   rectangle.x += random(-10,10);
