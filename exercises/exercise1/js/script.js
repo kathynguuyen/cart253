@@ -100,6 +100,7 @@ function draw() {
   //square becomes more green
   square.fillg +=1;
 
+  //square moves with the mouse
   rect(mouseX,mouseY,square.size);
 
 }
