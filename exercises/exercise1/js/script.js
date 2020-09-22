@@ -71,7 +71,7 @@ function draw() {
   // circle becomes more blue
   circle.fillb += 1;
 
-  // circle moves and changes size
+  // circle moves and changes size with mouseX
   circle.x += 1;
   circle.x = constrain(circle.x,0,500);
   circle.size = map(mouseX,height,0,50,500);
@@ -85,14 +85,15 @@ function draw() {
   //rectangle becomes more red
   rectangle.fillr +=1;
 
+  //rectangle movement
+  rectangle.x += random(-10,10);
+  rectangle.x = constrain(rectangle.x,50,250);
 
   rect(rectangle.x,rectangle.y,rectangle.width,rectangle.height);
 
   // square
   fill(square.fillr,square.fillg,square.fillb);
 
-  // square movement
-  square.x = random(-10,10);
   //square becomes more green
   square.fillg +=1;
 
