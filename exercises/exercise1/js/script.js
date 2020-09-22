@@ -70,6 +70,12 @@ function draw() {
   fill(circle.fillr,circle.fillg,circle.fillb);
   // circle becomes more blue
   circle.fillb += 1;
+
+  // circle moves and changes size
+  circle.x += 1;
+  circle.x = constrain(circle.x,0,500);
+  circle.size = map(mouseX,height,0,50,500);
+
   ellipse(circle.x,circle.y,circle.size);
 
 
@@ -79,14 +85,17 @@ function draw() {
   //rectangle becomes more red
   rectangle.fillr +=1;
 
+
   rect(rectangle.x,rectangle.y,rectangle.width,rectangle.height);
 
   // square
   fill(square.fillr,square.fillg,square.fillb);
 
+  // square movement
+  square.x = random(-10,10);
   //square becomes more green
   square.fillg +=1;
 
-  rect(square.x,square.y,square.size);
+  rect(mouseX,mouseY,square.size);
 
 }
