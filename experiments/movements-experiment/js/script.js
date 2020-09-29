@@ -5,16 +5,13 @@ Pippin Barr
 Here is a description of this template p5 project.
 **************************************************/
 
-let bg = {
-  r: 0,
-  g: 0,
-  b: 0
-}
-
 let circle = {
   x: 250,
   y: 250,
-  size: 100
+  size: 100,
+  vx: 0,
+  vy:0,
+  speed: 5
 }
 
 
@@ -30,20 +27,26 @@ function setup() {
 // Description of draw() goes here.
 function draw() {
 
-  background(bg.r,bg.g,bg.b);
+  background(0);
+
+  if (mouseX < circle.x) {
+    circle.vx = -circle.speed;
+  }
+  else {
+    circle.vx = circle.speed;
+  }
+
+  if (mouseY < circle.y) {
+    circle.vy = -circle.speed;
+  }
+  else {
+    circle.vy = circle.speed;
+  }
+
+  circle.x = circle.x + circle.vx;
+  circle.y = circle.y + circle.vy;
 
   ellipse(circle.x, circle.y, circle.size);
-
-
-}
-
-
-  function mousePressed() {
-    circle.x = mouseX;
-    circle.y = mouseY;
-    bg.r = random(0,255);
-    bg.g = random(0,255);
-    bg.b = random(0,255);
 
 
   }
