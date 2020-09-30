@@ -89,7 +89,7 @@ function draw() {
 
   let distance = dist(user.x,user.y,covid19.x,covid19.y);
   if(distance < covid19.size + user.size) {
-    covid19.size = covid19.size + 10;
+    covid19.size = covid19.size + 5;
   } else {
     covid19.size = 100;
   }
