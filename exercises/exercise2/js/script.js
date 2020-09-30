@@ -48,8 +48,8 @@ let covid19No3 = {
 };
 
 let user = {
-  x: 250,
-  y: 250,
+  x: 1000,
+  y: 500,
   size: 100,
   fill: 255,
   dragged: false,
