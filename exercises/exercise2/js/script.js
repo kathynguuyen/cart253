@@ -56,6 +56,9 @@ function setup() {
 
   covid19.y = random(0, height);
   covid19.vx = covid19.speed;
+
+  covid19No2.y = random(0, height);
+  covid19No2.vx = covid19No2.speed;
 }
 
 // draw()
@@ -104,11 +107,22 @@ function draw() {
     y = y + 40;
   }
 
-  //display covid19No2
-  fill(covid19No2.fill.r, covid19No2.fill.g, covid19No2.fill.b);
-  ellipse(covid19No2.x, y, covid19No2.size);
+  // covid19No2 movement
   covid19No2.x = covid19No2.x + covid19No2.vx;
   covid19No2.y = covid19No2.y + covid19No2.vy;
+
+
+      if (covid19No2.x > width) {
+        covid19No2.x = 0;
+        covid19No2.y = random(0, height);
+      }
+
+
+  //display covid19No2
+  fill(covid19No2.fill.r, covid19No2.fill.g, covid19No2.fill.b);
+  ellipse(covid19No2.x, covid19No2.y, covid19No2.size);
+
+
 
 
 
