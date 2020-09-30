@@ -25,7 +25,7 @@ let covid19No2 = {
   size: 100,
   vx: 0,
   vy: 0,
-  speed: 10,
+  speed: 20,
   fill: {
     r: 255,
     g: 0,
@@ -33,6 +33,20 @@ let covid19No2 = {
   },
 };
 
+
+let covid19No3 = {
+  x: 0,
+  y: 250,
+  size: 100,
+  vx: 0,
+  vy: 0,
+  speed: 25,
+  fill: {
+    r: 255,
+    g: 0,
+    b: 0,
+  },
+};
 
 let user = {
   x: 250,
@@ -59,6 +73,10 @@ function setup() {
 
   covid19No2.y = random(0, height);
   covid19No2.vx = covid19No2.speed;
+
+
+    covid19No3.y = random(0, height);
+    covid19No3.vx = covid19No3.speed;
 }
 
 // draw()
@@ -75,6 +93,7 @@ function draw() {
     point(x, y);
   }
 
+  //covid19 OG
   // movement
   covid19.x = covid19.x + covid19.vx;
   covid19.y = covid19.y + covid19.vy;
@@ -90,8 +109,9 @@ function draw() {
     noLoop();
   }
 
-  let distance = dist(user.x,user.y,covid19.x,covid19.y);
-  if(distance < covid19.size + user.size) {
+  // when user gets closer to covid, covid gets bigger
+  let distance = dist(user.x, user.y, covid19.x, covid19.y);
+  if (distance < covid19.size + user.size) {
     covid19.size = covid19.size + 5;
   } else {
     covid19.size = 100;
@@ -107,23 +127,45 @@ function draw() {
     y = y + 40;
   }
 
-  // covid19No2 movement
+  //covid19No2
+  // movement
   covid19No2.x = covid19No2.x + covid19No2.vx;
   covid19No2.y = covid19No2.y + covid19No2.vy;
 
+  if (covid19No2.x > width) {
+    covid19No2.x = 0;
+    covid19No2.y = random(0, height);
+  }
 
-      if (covid19No2.x > width) {
-        covid19No2.x = 0;
-        covid19No2.y = random(0, height);
-      }
-
+  //check for catching covid19
+  let d2 = dist(user.x, user.y, covid19No2.x, covid19No2.y);
+  if (d2 < covid19No2.size / 2 + user.size / 2) {
+    noLoop();
+  }
 
   //display covid19No2
   fill(covid19No2.fill.r, covid19No2.fill.g, covid19No2.fill.b);
   ellipse(covid19No2.x, covid19No2.y, covid19No2.size);
 
+  //covid19No3
+  // movement
+  covid19No3.x = covid19No3.x + covid19No3.vx;
+  covid19No3.y = covid19No3.y + covid19No3.vy;
 
+  if (covid19No3.x > width) {
+    covid19No3.x = 0;
+    covid19No3.y = random(0, height);
+  }
 
+  //check for catching covid19
+  let d3 = dist(user.x, user.y, covid19No3.x, covid19No3.y);
+  if (d3 < covid19No3.size / 2 + user.size / 2) {
+    noLoop();
+  }
+
+  //display covid19No3
+  fill(covid19No3.fill.r, covid19No3.fill.g, covid19No3.fill.b);
+  ellipse(covid19No3.x, covid19No3.y, covid19No3.size);
 
 
   // display user
