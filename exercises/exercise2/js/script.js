@@ -44,7 +44,7 @@ let user = {
 
 let hedgehogImage;
 function preload() {
-  hedgehogImage = loadImage("assets/images/hedgehog.png");
+  hedgehogImage = loadImage("assets/images/hedgehog.jpg");
 }
 
 // setup()
