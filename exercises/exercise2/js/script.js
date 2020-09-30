@@ -33,7 +33,6 @@ let covid19No2 = {
   },
 };
 
-
 let covid19No3 = {
   x: 0,
   y: 250,
@@ -74,9 +73,8 @@ function setup() {
   covid19No2.y = random(0, height);
   covid19No2.vx = covid19No2.speed;
 
-
-    covid19No3.y = random(0, height);
-    covid19No3.vx = covid19No3.speed;
+  covid19No3.y = random(0, height);
+  covid19No3.vx = covid19No3.speed;
 }
 
 // draw()
@@ -166,7 +164,6 @@ function draw() {
   //display covid19No3
   fill(covid19No3.fill.r, covid19No3.fill.g, covid19No3.fill.b);
   ellipse(covid19No3.x, covid19No3.y, covid19No3.size);
-
 
   // display user
   image(hedgehogImage, user.x, user.y, 100, 100);
