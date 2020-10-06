@@ -49,12 +49,12 @@ let state = `title`; // title, simulation, love, sadness
 function setup() {
  createCanvas(windowWidth, windowHeight);
   // position circles seperated from one another
-  circle1.x = width / 3;
-  circle2.x = (2 * width) / 3;
+  circle1.x = windowWidth / 3;
+  circle2.x = (2 * windowWidth) / 3;
 
   // circles moving in random direction
-  circle1.vx = random(-circle1.speed,circle1.speed);
-  circle1.vy = random(-circle1.speed,circle1.speed);
+  //circle1.vx = random(-circle1.speed,circle1.speed);
+//  circle1.vy = random(-circle1.speed,circle1.speed);
   circle2.vx = random(-circle2.speed,circle2.speed);
   circle2.vy = random(-circle2.speed,circle2.speed);
 }
@@ -92,6 +92,8 @@ function title() {
 }
 
 function simulation() {
+
+  handleInput();
 
   // move the circles
   move();
@@ -146,6 +148,8 @@ function mousePressed() {
 
 }
 
+
+// love state
 function love() {
   push();
   textSize(64);
@@ -156,6 +160,7 @@ function love() {
   pop();
 }
 
+// sadness state
 function sadness() {
   push();
   textSize(64);
@@ -163,5 +168,28 @@ function sadness() {
   textAlign(CENTER,CENTER);
   text(`SADNESS!`, windowWidth/2, windowHeight/2);
   image(hedgehogsad,windowWidth/2,(windowHeight/2)-200,150,150);
+  pop();
+}
+
+
+function handleInput() {
+  push();
+  if (keyIsDown(LEFT_ARROW)) {
+    circle1.vx = -circle1.speed;
+  }
+  else if (keyIsDown(RIGHT_ARROW)) {
+    circle1.vx = circle1.speed;
+  }
+  else {
+    circle1.vx = 0;
+  }
+
+  if(keyIsDown(UP_ARROW)) {
+    circle1.vy = -circle1.speed;
+  } else if (keyIsDown(DOWN_ARROW)) {
+    circle1.vy = circle1.speed;
+  } else {
+    circle1.vy = 0;
+  }
   pop();
 }
