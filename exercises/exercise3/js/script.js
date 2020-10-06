@@ -30,6 +30,7 @@ let circle2 = {
 
 let hedgehoghappy;
 let hedgehogsad;
+let hedgehogtitle;
 
 // load images
 function preload() {
@@ -37,6 +38,7 @@ function preload() {
   hedgehog2 = loadImage('assets/images/hedgehog2.png');
   hedgehoghappy = loadImage('assets/images/hedgehoghappy.png');
   hedgehogsad = loadImage('assets/images/hedgehogsad.png');
+  hedgehogtitle = loadImage('assets/images/hedgehogtitle.png');
 
 }
 
@@ -53,8 +55,6 @@ function setup() {
   circle2.x = (2 * windowWidth) / 3;
 
   // circles moving in random direction
-  //circle1.vx = random(-circle1.speed,circle1.speed);
-//  circle1.vy = random(-circle1.speed,circle1.speed);
   circle2.vx = random(-circle2.speed,circle2.speed);
   circle2.vy = random(-circle2.speed,circle2.speed);
 }
@@ -87,7 +87,10 @@ function title() {
   textSize(64);
   fill(200,100,100);
   textAlign(CENTER,CENTER);
-  text(`LOVE?`, windowWidth/2, windowHeight/2);
+  text(`Catch the love of your life!`, windowWidth/2, windowHeight/2);
+  image(hedgehogtitle, (windowWidth/2)-100, (windowHeight/2)+100,200,200);
+  textSize(50);
+  text(`Left click to continue and use the arrow keys to play!`, windowWidth/2, windowHeight-100);
   pop();
 }
 
@@ -155,7 +158,7 @@ function love() {
   textSize(64);
   fill(255,150,150);
   textAlign(CENTER,CENTER);
-  text(`LOVE!`, windowWidth/2, windowHeight/2);
+  text(`LOVE! WOOHOO!!`, windowWidth/2, windowHeight/2);
   image(hedgehoghappy,windowWidth/2,(windowHeight/2)-200,150,150);
   pop();
 }
@@ -166,7 +169,7 @@ function sadness() {
   textSize(64);
   fill(0,0,255);
   textAlign(CENTER,CENTER);
-  text(`SADNESS!`, windowWidth/2, windowHeight/2);
+  text(`You lost the love of your life!`, windowWidth/2, windowHeight/2);
   image(hedgehogsad,windowWidth/2,(windowHeight/2)-200,150,150);
   pop();
 }
