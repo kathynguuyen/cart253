@@ -26,7 +26,7 @@ let hedgehog2 = {
   vy: 0,
   tx: 0,
   ty: 10,
-  speed: 10,
+  speed: 13,
   img: hedgehog2img
 };
 
@@ -57,10 +57,10 @@ function setup() {
 
 function reset() {
   // position circles seperated from one another
-  hedgehog1.x = windowWidth / 3;
-  hedgehog1.y = windowHeight/2;
-  hedgehog2.x = (2 * windowWidth) / 3;
-  hedgehog2.y = windowHeight/2;
+  hedgehog1.x = width / 3;
+  hedgehog1.y = height/2;
+  hedgehog2.x = (2 * width) / 3;
+  hedgehog2.y = height/2;
 
   // circles moving in random direction
   hedgehog2.vx = random(-hedgehog2.speed,hedgehog2.speed);
@@ -95,10 +95,10 @@ function title() {
   textSize(64);
   fill(200,100,100);
   textAlign(CENTER,CENTER);
-  text(`Catch the love of your life!`, windowWidth/2, windowHeight/2);
-  image(hedgehogtitle, (windowWidth/2)-100, (windowHeight/2)+100,200,200);
+  text(`Catch the love of your life!`, width/2, height/2);
+  image(hedgehogtitle, (width/2)-100, (height/2)+100,200,200);
   textSize(50);
-  text(`Left click to continue and use the arrow keys to play!`, windowWidth/2, windowHeight-100);
+  text(`Left click to continue and use the arrow keys to play!`, width/2, height-100);
   pop();
 }
 
@@ -127,6 +127,8 @@ function move() {
   hedgehog1.x = hedgehog1.x + hedgehog1.vx;
   hedgehog1.y = hedgehog1.y + hedgehog1.vy;
 
+
+  // perlin noise
   hedgehog2.tx = hedgehog2.tx + 0.025;
   hedgehog2.ty = hedgehog2.ty + 0.025;
 
@@ -143,7 +145,7 @@ function move() {
 
 function checkOffScreen() {
   // check if circles are offscreen
-  if(hedgehog1.x < 0 || hedgehog1.x > windowWidth || hedgehog1.y < 0 || hedgehog1.y > windowHeight || hedgehog2.x < 0 || hedgehog2.x > windowWidth || hedgehog2.y < 0 || hedgehog2.y > windowHeight) {
+  if(hedgehog1.x < 0 || hedgehog1.x > width || hedgehog1.y < 0 || hedgehog1.y > height || hedgehog2.x < 0 || hedgehog2.x > width || hedgehog2.y < 0 || hedgehog2.y > height) {
     state = `sadness`;
   }
 }
@@ -182,8 +184,8 @@ function love() {
   textSize(64);
   fill(255,150,150);
   textAlign(CENTER,CENTER);
-  text(`LOVE! WOOHOO!!`, windowWidth/2, windowHeight/2);
-  image(hedgehoghappy,windowWidth/2,(windowHeight/2)-200,150,150);
+  text(`LOVE! WOOHOO!!`, width/2, height/2);
+  image(hedgehoghappy,width/2,(height/2)-200,150,150);
   pop();
 }
 
@@ -195,8 +197,8 @@ function sadness() {
   textSize(64);
   fill(0,0,255);
   textAlign(CENTER,CENTER);
-  text(`You lost the love of your life!`, windowWidth/2, windowHeight/2);
-  image(hedgehogsad,windowWidth/2,(windowHeight/2)-200,150,150);
+  text(`You lost the love of your life!`, width/2, height/2);
+  image(hedgehogsad,width/2,(height/2)-200,150,150);
   pop();
 
 }
