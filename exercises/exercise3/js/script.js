@@ -24,7 +24,9 @@ let hedgehog2 = {
   size: 50,
   vx: 0,
   vy: 0,
-  speed: 5,
+  tx: 0,
+  ty: 10,
+  speed: 10,
   img: hedgehog2img
 };
 
@@ -124,6 +126,16 @@ function move() {
   // move the circles
   hedgehog1.x = hedgehog1.x + hedgehog1.vx;
   hedgehog1.y = hedgehog1.y + hedgehog1.vy;
+
+  hedgehog2.tx = hedgehog2.tx + 0.025;
+  hedgehog2.ty = hedgehog2.ty + 0.025;
+
+  let noiseX = noise(hedgehog2.tx);
+  let noiseY = noise(hedgehog2.ty);
+
+  hedgehog2.vx = map(noiseX, 0, 1, -hedgehog2.speed, hedgehog2.speed);
+  hedgehog2.vy = map(noiseY, 0, 1, -hedgehog2.speed, hedgehog2.speed);
+
 
   hedgehog2.x = hedgehog2.x + hedgehog2.vx;
   hedgehog2.y = hedgehog2.y + hedgehog2.vy;
