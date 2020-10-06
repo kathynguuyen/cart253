@@ -6,29 +6,38 @@ Here is a description of this template p5 project.
 **************************************************/
 
 // setting up circles
+let hedgehog1;
 let circle1 = {
   x: 0,
   y: 250,
-  size: 100,
+  size: 50,
   vx: 0,
   vy: 0,
   speed: 5,
+  img: hedgehog1
 };
 
-let clownImage;
+let hedgehog2;
 let circle2 = {
   x: 350,
   y: 250,
-  size: 100,
+  size: 50,
   vx: 0,
   vy: 0,
   speed: 5,
-  img: clownImage
+  img: hedgehog2
 };
+
+let hedgehoghappy;
+let hedgehogsad;
 
 // load images
 function preload() {
-  clownImage = loadImage('assets/images/clown.png');
+  hedgehog1 = loadImage('assets/images/hedgehog1.png');
+  hedgehog2 = loadImage('assets/images/hedgehog2.png');
+  hedgehoghappy = loadImage('assets/images/hedgehoghappy.png');
+  hedgehogsad = loadImage('assets/images/hedgehogsad.png');
+
 }
 
 
@@ -126,8 +135,8 @@ function checkOverlap() {
 
 function display() {
   // display the circles
-  ellipse(circle1.x,circle1.y,circle1.size);
-  image(clownImage, circle2.x,circle2.y,circle2.size);
+  image(hedgehog1,circle1.x,circle1.y,150,150);
+  image(hedgehog2, circle2.x,circle2.y,150,150);
 }
 
 function mousePressed() {
@@ -143,6 +152,7 @@ function love() {
   fill(255,150,150);
   textAlign(CENTER,CENTER);
   text(`LOVE!`, windowWidth/2, windowHeight/2);
+  image(hedgehoghappy,windowWidth/2,(windowHeight/2)-200,150,150);
   pop();
 }
 
@@ -152,5 +162,6 @@ function sadness() {
   fill(0,0,255);
   textAlign(CENTER,CENTER);
   text(`SADNESS!`, windowWidth/2, windowHeight/2);
+  image(hedgehogsad,windowWidth/2,(windowHeight/2)-200,150,150);
   pop();
 }
