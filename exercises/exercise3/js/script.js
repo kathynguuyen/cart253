@@ -13,7 +13,7 @@ let hedgehog1 = {
   size: 50,
   vx: 0,
   vy: 0,
-  speed: 3,
+  speed: 5,
   img: hedgehog1img
 };
 
