@@ -6,26 +6,26 @@ Here is a description of this template p5 project.
 **************************************************/
 
 // setting up circles
-let hedgehog1;
-let circle1 = {
+let hedgehog1img;
+let hedgehog1 = {
   x: 0,
   y: 250,
   size: 50,
   vx: 0,
   vy: 0,
-  speed: 5,
-  img: hedgehog1
+  speed: 3,
+  img: hedgehog1img
 };
 
-let hedgehog2;
-let circle2 = {
+let hedgehog2img;
+let hedgehog2 = {
   x: 350,
   y: 250,
   size: 50,
   vx: 0,
   vy: 0,
   speed: 5,
-  img: hedgehog2
+  img: hedgehog2img
 };
 
 let hedgehoghappy;
@@ -34,8 +34,8 @@ let hedgehogtitle;
 
 // load images
 function preload() {
-  hedgehog1 = loadImage('assets/images/hedgehog1.png');
-  hedgehog2 = loadImage('assets/images/hedgehog2.png');
+  hedgehog1img = loadImage('assets/images/hedgehog1.png');
+  hedgehog2img = loadImage('assets/images/hedgehog2.png');
   hedgehoghappy = loadImage('assets/images/hedgehoghappy.png');
   hedgehogsad = loadImage('assets/images/hedgehogsad.png');
   hedgehogtitle = loadImage('assets/images/hedgehogtitle.png');
@@ -50,13 +50,19 @@ let state = `title`; // title, simulation, love, sadness
 // Description of setup() goes here.
 function setup() {
  createCanvas(windowWidth, windowHeight);
+ reset();
+}
+
+function reset() {
   // position circles seperated from one another
-  circle1.x = windowWidth / 3;
-  circle2.x = (2 * windowWidth) / 3;
+  hedgehog1.x = windowWidth / 3;
+  hedgehog1.y = windowHeight/2;
+  hedgehog2.x = (2 * windowWidth) / 3;
+  hedgehog2.y = windowHeight/2;
 
   // circles moving in random direction
-  circle2.vx = random(-circle2.speed,circle2.speed);
-  circle2.vy = random(-circle2.speed,circle2.speed);
+  hedgehog2.vx = random(-hedgehog2.speed,hedgehog2.speed);
+  hedgehog2.vy = random(-hedgehog2.speed,hedgehog2.speed);
 }
 
 // draw()
@@ -116,37 +122,43 @@ function simulation() {
 
 function move() {
   // move the circles
-  circle1.x = circle1.x + circle1.vx;
-  circle1.y = circle1.y + circle1.vy;
+  hedgehog1.x = hedgehog1.x + hedgehog1.vx;
+  hedgehog1.y = hedgehog1.y + hedgehog1.vy;
 
-  circle2.x = circle2.x + circle2.vx;
-  circle2.y = circle2.y + circle2.vy;
+  hedgehog2.x = hedgehog2.x + hedgehog2.vx;
+  hedgehog2.y = hedgehog2.y + hedgehog2.vy;
 }
 
 function checkOffScreen() {
   // check if circles are offscreen
-  if(circle1.x < 0 || circle1.x > windowWidth || circle1.y < 0 || circle1.y > windowHeight || circle2.x < 0 || circle2.x > windowWidth || circle2.y < 0 || circle2.y > windowHeight) {
+  if(hedgehog1.x < 0 || hedgehog1.x > windowWidth || hedgehog1.y < 0 || hedgehog1.y > windowHeight || hedgehog2.x < 0 || hedgehog2.x > windowWidth || hedgehog2.y < 0 || hedgehog2.y > windowHeight) {
     state = `sadness`;
   }
 }
 
 function checkOverlap() {
   // check if circles are overlapping
-  let d = dist(circle1.x,circle1.y,circle2.x,circle2.y);
-  if (d < circle1.size/2 + circle2.size/2) {
+  let d = dist(hedgehog1.x,hedgehog1.y,hedgehog2.x,hedgehog2.y);
+  if (d < hedgehog1.size/2 + hedgehog2.size/2) {
     state = `love`;
   }
 }
 
 function display() {
   // display the circles
-  image(hedgehog1,circle1.x,circle1.y,150,150);
-  image(hedgehog2, circle2.x,circle2.y,150,150);
+  image(hedgehog1img,hedgehog1.x,hedgehog1.y,150,150);
+  image(hedgehog2img, hedgehog2.x,hedgehog2.y,150,150);
 }
 
 function mousePressed() {
-  if(state == `title`) {
+  if(state === `title`) {
     state =  `simulation`;
+  }
+
+  // easter egg, another chance at love
+  if(state ===`sadness`) {
+    state = `simulation`;
+    reset();
   }
 
 }
@@ -163,6 +175,8 @@ function love() {
   pop();
 }
 
+
+
 // sadness state
 function sadness() {
   push();
@@ -172,27 +186,29 @@ function sadness() {
   text(`You lost the love of your life!`, windowWidth/2, windowHeight/2);
   image(hedgehogsad,windowWidth/2,(windowHeight/2)-200,150,150);
   pop();
+
 }
 
 
+// move the circle with arrow keys
 function handleInput() {
   push();
   if (keyIsDown(LEFT_ARROW)) {
-    circle1.vx = -circle1.speed;
+    hedgehog1.vx = -hedgehog1.speed;
   }
   else if (keyIsDown(RIGHT_ARROW)) {
-    circle1.vx = circle1.speed;
+    hedgehog1.vx = hedgehog1.speed;
   }
   else {
-    circle1.vx = 0;
+    hedgehog1.vx = 0;
   }
 
   if(keyIsDown(UP_ARROW)) {
-    circle1.vy = -circle1.speed;
+    hedgehog1.vy = -hedgehog1.speed;
   } else if (keyIsDown(DOWN_ARROW)) {
-    circle1.vy = circle1.speed;
+    hedgehog1.vy = hedgehog1.speed;
   } else {
-    circle1.vy = 0;
+    hedgehog1.vy = 0;
   }
   pop();
 }
