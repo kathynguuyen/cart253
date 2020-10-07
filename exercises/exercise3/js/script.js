@@ -30,6 +30,15 @@ let hedgehog2 = {
   img: hedgehog2img
 };
 
+let obstacle = {
+  x: 350,
+  y: 250,
+  size: 40,
+  vx: 0,
+  vy: 0,
+  speed: 5
+}
+
 let hedgehoghappy;
 let hedgehogsad;
 let hedgehogtitle;
@@ -58,13 +67,15 @@ function setup() {
 function reset() {
   // position circles seperated from one another
   hedgehog1.x = width / 3;
-  hedgehog1.y = height/2;
+  hedgehog1.y = height/3;
   hedgehog2.x = (2 * width) / 3;
   hedgehog2.y = height/2;
 
   // circles moving in random direction
   hedgehog2.vx = random(-hedgehog2.speed,hedgehog2.speed);
   hedgehog2.vy = random(-hedgehog2.speed,hedgehog2.speed);
+
+
 }
 
 // draw()
@@ -106,21 +117,45 @@ function simulation() {
 
   handleInput();
 
-  // move the circles
+  // move the hedgehogs
   move();
 
+  // move the obstacle
+  obstacleMovement();
 
-  // check if circes have gone offscreen
+  // check if hedgehogs have gone offscreen
   checkOffScreen();
 
-  // check if circles are overlapping
+  // check if hedgehogs are overlapping
   checkOverlap();
 
-  // display the circles
+  //check if hedgehog touch the obstacle
+  obstacleTouch();
+
+  // display the hedgehogs
   display();
 
 }
 
+function obstacleMovement() {
+  // move the obstacle
+  obstacle.x = width/2
+  obstacle.y = height/2
+  obstacle.vx = random(-obstacle.speed,obstacle.speed);
+  obstacle.vy = random(-obstacle.speed,obstacle.speed);
+  obstacle.size = random(0,200);
+
+
+    obstacle.x = obstacle.x + obstacle.vx;
+    obstacle.y = obstacle.y + obstacle.vy;
+}
+
+function obstacleTouch() {
+  let d2 = dist(hedgehog1.x,hedgehog1.y,obstacle.x,obstacle.y);
+  if (d2 < hedgehog1.size/2 + obstacle.size/2) {
+    state = `sadness`;
+  }
+}
 
 function move() {
   // move the circles
@@ -159,7 +194,8 @@ function checkOverlap() {
 }
 
 function display() {
-  // display the circles
+  // display the hedgehogs
+  ellipse(obstacle.x,obstacle.y,obstacle.size);
   image(hedgehog1img,hedgehog1.x,hedgehog1.y,150,150);
   image(hedgehog2img, hedgehog2.x,hedgehog2.y,150,150);
 }
