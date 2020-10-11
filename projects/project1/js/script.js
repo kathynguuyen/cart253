@@ -5,10 +5,12 @@ Pippin Barr
 Here is a description of this template p5 project.
 **************************************************/
 
-let titleScreen;
+let titleScreenImg;
+
 
 function preload() {
-  titleScreen = loadImage('assets/images/titleScreen.png');
+  titleScreenImg = loadImage('assets/images/titleScreenImg.png');
+
 }
 
 let state = `title`; // title, how to play, simulation, win, lose
@@ -26,15 +28,33 @@ function setup() {
 function draw() {
   background(109,207,246);
 
-  if(state == `title`) {
+  if(state === `title`) {
     title();
   }
 
+  if(state === `simulation`) {
+    simulation();
+  }
+
+}
+
+function simulation() {
+  background(0);
 }
 
 
 function title() {
   push();
-  image(titleScreen,0,0,1000,500);
+  image(titleScreenImg,0,0,1000,500);
   pop();
+}
+
+function mousePressed() {
+  if(state === `title`) {
+    if(mouseX > 40 && mouseX < 250) {
+      if (mouseY > 400 && mouseY < 430) {
+        state = `simulation`;
+      }
+    }
+  }
 }
