@@ -28,6 +28,7 @@ function setup() {
 function draw() {
   background(109,207,246);
 
+  //states
   if(state === `title`) {
     title();
   }
@@ -36,12 +37,11 @@ function draw() {
     simulation();
   }
 
-}
+  if(state === `howToPlay`) {
+    howToPlay();
+  }
 
-function simulation() {
-  background(0);
 }
-
 
 function title() {
   push();
@@ -49,7 +49,21 @@ function title() {
   pop();
 }
 
+function simulation() {
+  background(0);
+}
+
+
+function howToPlay() {
+  background(100,0,0);
+}
+
+
+
+
 function mousePressed() {
+
+  // press the play button
   if(state === `title`) {
     if(mouseX > 40 && mouseX < 250) {
       if (mouseY > 400 && mouseY < 430) {
@@ -57,4 +71,14 @@ function mousePressed() {
       }
     }
   }
+
+  // press the how to play button
+  if(state === `title`) {
+    if(mouseX > 700 && mouseX < 880) {
+      if (mouseY > 350 && mouseY < 460) {
+        state = `howToPlay`;
+      }
+    }
+  }
+
 }
