@@ -6,11 +6,21 @@ Here is a description of this template p5 project.
 **************************************************/
 
 let titleScreenImg;
+let pigImg;
 
+let pig = {
+  x : 450,
+  y : 400,
+  size : 50,
+  vx: 0,
+  vy: 0,
+  speed: 5,
+  img: pigImg
+}
 
 function preload() {
   titleScreenImg = loadImage('assets/images/titleScreenImg.png');
-
+  pigImg = loadImage('assets/images/pig.png');
 }
 
 let state = `title`; // title, how to play, simulation, win, lose
@@ -19,6 +29,7 @@ let state = `title`; // title, how to play, simulation, win, lose
 function setup() {
 
   createCanvas(1000,500);
+
 
 }
 
@@ -51,6 +62,14 @@ function title() {
 
 function simulation() {
   background(0);
+
+  handleInput();
+  move();
+  display();
+
+
+
+
 }
 
 
@@ -81,4 +100,43 @@ function mousePressed() {
     }
   }
 
+}
+
+
+function move() {
+  pig.x = pig.x + pig.vx;
+  pig.y = pig.y + pig.vy;
+}
+
+function display() {
+  // display the pig
+  image(pigImg,pig.x,pig.y,150,100);
+
+}
+
+
+// move the pig with arrow keys
+function handleInput() {
+  push();
+  if(keyIsDown(LEFT_ARROW)) {
+    pig.vx = -pig.speed;
+  }
+  else if(keyIsDown(RIGHT_ARROW)) {
+    pig.vx = pig.speed;
+  }
+  else {
+    pig.vx = 0;
+  }
+
+
+  if(keyIsDown(UP_ARROW)) {
+    pig.vy = -pig.speed;
+  } else if (keyIsDown(DOWN_ARROW)) {
+    pig.vy = pig.speed;
+  } else {
+    pig.vy = 0;
+  }
+
+
+  pop();
 }
