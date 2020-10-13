@@ -31,8 +31,8 @@ let pig = {
   sizeHeight: 50,
   vx: 0,
   vy: 0,
-  speed: 5,
-  img: pigImg,
+  speed: 6.5,
+  img: pigImg
 };
 
 let carrot = {
@@ -42,7 +42,7 @@ let carrot = {
   sizeHeight: 100,
   vx: 0,
   vy: 0,
-  speed: 5,
+  speed: 4,
   img: carrotImg,
 };
 
@@ -53,7 +53,7 @@ let apple = {
   sizeHeight: 50,
   vx: 0,
   vy: 0,
-  speed: 5,
+  speed: 3,
   img: appleImg,
 };
 
