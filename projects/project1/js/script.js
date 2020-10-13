@@ -340,7 +340,7 @@ function display() {
 
 // spawns corn anywhere and change the size
 if (carrotFalling === true) {
-  carrot.x = random(0, width - 50);
+  carrot.x = random(50, width - 50);
   carrot.y = -50;
   carrot.sizeWidth = random(50, 250);
 
