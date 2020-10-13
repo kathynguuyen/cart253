@@ -5,7 +5,6 @@ Kathy Nguyen
 Oink effect: https://freesound.org/people/qubodup/sounds/442907/
 Wind sound: https://freesound.org/people/klankbeeld/sounds/432780/
 Game music: https://freesound.org/people/aptbr/sounds/441301/
-Here is a description of this template p5 project.
 **************************************************/
 
 let titleScreenImg;
@@ -21,6 +20,8 @@ let carrotFalling;
 let cornFalling;
 let titleMusic;
 let gameMusic;
+let cloud1Img;
+let cloud2Img;
 let score = 0;
 
 let pig = {
@@ -67,6 +68,29 @@ let corn = {
   img: cornImg,
 };
 
+
+let cloud1 = {
+  x: 0,
+  y: 0,
+  sizeWidth: 150,
+  sizeHeight: 100,
+  vx: 0,
+  vy: 0,
+  speed: 2,
+  img: cloud1Img
+};
+
+let cloud2 = {
+  x: 0,
+  y: 0,
+  sizeWidth: 150,
+  sizeHeight: 100,
+  vx: 0,
+  vy: 0,
+  speed: 8,
+  img: cloud2Img
+};
+
 function preload() {
   titleScreenImg = loadImage("assets/images/titleScreenImg.png");
   howToPlayImg = loadImage("assets/images/howToPlayScreen.png");
@@ -75,11 +99,15 @@ function preload() {
   carrotImg = loadImage("assets/images/carrot.png");
   cornImg = loadImage("assets/images/corn.png");
   appleImg = loadImage("assets/images/apple.png");
+  cloud1Img = loadImage("assets/images/cloud_1.png");
+  cloud2Img = loadImage("assets/images/cloud_2.png");
+
 
   oink = loadSound("assets/sounds/oink.wav");
   titleMusic = loadSound("assets/sounds/windTitleScreen.wav");
   gameMusic = loadSound("assets/sounds/gameMusic.wav");
 }
+
 
 let state = `title`; // title, how to play, simulation, win, lose
 
@@ -99,9 +127,18 @@ function setup() {
   carrot.x = random(0, width);
   carrot.vy = corn.speed;
 
+
+  // clouds appear at a random spot in the canvas
+  cloud1.y = random(0,height);
+  cloud1.vx = cloud1.speed;
+
+  cloud2.y = random(0,height);
+  cloud2.vx = cloud1.speed;
+
   titleMusic.setVolume(0.2);
   titleMusic.play();
   gameMusic.setVolume(0.05);
+
 
 
 }
@@ -204,6 +241,27 @@ function move() {
   // move carrot
   carrot.y = carrot.y + carrot.vy;
 
+  // move clouds
+  cloud1.x = cloud1.x + cloud1.vx;
+  cloud1.y = cloud1.y + cloud1.vy;
+
+  if (cloud1.x > width) {
+    cloud1.x = 0;
+    cloud1.y = random(0,height);
+  }
+
+
+  cloud2.x = cloud2.x + cloud2.vx;
+  cloud2.y = cloud2.y + cloud2.vy;
+
+  if (cloud2.x > width) {
+    cloud2.x = 0;
+    cloud2.y = random(0,height);
+  }
+
+
+
+
 }
 
 function display() {
@@ -252,12 +310,20 @@ if (carrot.y > height) {
 }
 
 
+  // dispay clouds
+  image(cloud1Img,cloud1.x,cloud1.y,cloud1.sizeWidth,cloud1.sizeHeight);
+  image(cloud2Img,cloud2.x,cloud2.y,cloud2.sizeWidth,cloud2.sizeHeight);
+
+
   // display food
   image(cornImg, corn.x, corn.y, corn.sizeWidth, corn.sizeHeight);
   image(carrotImg, carrot.x, carrot.y, carrot.sizeWidth, carrot.sizeHeight);
   image(appleImg, apple.x, apple.y, apple.sizeWidth, apple.sizeHeight);
   // display the pig
   image(pigImg, pig.x, pig.y, pig.sizeWidth, pig.sizeHeight);
+
+
+
 }
 
 // move the pig with arrow keys
