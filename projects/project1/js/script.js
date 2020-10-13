@@ -456,7 +456,7 @@ function checkSize() {
 
 function checkScore() {
 
-    if (score === 20) {
+    if (score === 40) {
       state = `win`;
     }
 
