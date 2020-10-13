@@ -313,7 +313,7 @@ function display() {
   if(appleFalling === true) {
     apple.x = random(50, width-50);
     apple.y = -50;
-    apple.sizeWidth = random(50, 150);
+    apple.sizeWidth = random(50, 130);
 
     appleFalling = false;
   }
