@@ -87,7 +87,19 @@ let cloud2 = {
   sizeHeight: 100,
   vx: 0,
   vy: 0,
-  speed: 8,
+  speed: 5,
+  img: cloud2Img
+};
+
+
+let cloud3 = {
+  x: 0,
+  y: 0,
+  sizeWidth: 150,
+  sizeHeight: 100,
+  vx: 0,
+  vy: 0,
+  speed: 1,
   img: cloud2Img
 };
 
@@ -133,7 +145,11 @@ function setup() {
   cloud1.vx = cloud1.speed;
 
   cloud2.y = random(0,height);
-  cloud2.vx = cloud1.speed;
+  cloud2.vx = cloud2.speed;
+
+
+    cloud3.y = random(0,height);
+    cloud3.vx = cloud3.speed;
 
   titleMusic.setVolume(0.2);
   titleMusic.play();
@@ -259,6 +275,15 @@ function move() {
     cloud2.y = random(0,height);
   }
 
+  cloud3.x = cloud3.x + cloud3.vx;
+  cloud3.y = cloud3.y + cloud3.vy;
+
+  if (cloud3.x > width) {
+    cloud3.x = 0;
+    cloud3.y = random(0,height);
+  }
+
+
 
 
 
@@ -286,7 +311,7 @@ function display() {
     if(cornFalling === true) {
       corn.x = random(0, width-50);
       corn.y = -50;
-      corn.sizeWidth = random(50, 300);
+      corn.sizeWidth = random(35, 250);
 
       cornFalling = false;
     }
@@ -300,7 +325,7 @@ function display() {
 if (carrotFalling === true) {
   carrot.x = random(0, width - 50);
   carrot.y = -50;
-  carrot.sizeWidth = random(50, 300);
+  carrot.sizeWidth = random(30, 300);
 
   carrotFalling = false;
 }
@@ -313,6 +338,8 @@ if (carrot.y > height) {
   // dispay clouds
   image(cloud1Img,cloud1.x,cloud1.y,cloud1.sizeWidth,cloud1.sizeHeight);
   image(cloud2Img,cloud2.x,cloud2.y,cloud2.sizeWidth,cloud2.sizeHeight);
+  image(cloud2Img,cloud3.x,cloud3.y,cloud3.sizeWidth,cloud3.sizeHeight);
+
 
 
   // display food
