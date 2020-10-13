@@ -1,7 +1,8 @@
 /**************************************************
-Template p5 project
-Pippin Barr
+Project 01 - Hungry Piggy
+Kathy Nguyen
 
+Oink effect: https://freesound.org/people/qubodup/sounds/442907/
 Here is a description of this template p5 project.
 **************************************************/
 
@@ -11,6 +12,9 @@ let carrotImg;
 let cornImg;
 let appleImg;
 let oink;
+let appleFalling;
+let carrotFalling;
+let cornFalling;
 
 let pig = {
   x: 450,
@@ -52,7 +56,7 @@ let corn = {
   sizeHeight: 100,
   vx: 0,
   vy: 0,
-  speed: 5,
+  speed: 7,
   img: cornImg,
 };
 
@@ -75,6 +79,16 @@ function setup() {
   // apple appears at a random spot in the canvas
   apple.x = random(0, width);
   apple.vy = apple.speed;
+
+  // corn appears at a random spot in the canvas
+  corn.x = random(0, width);
+  corn.vy = corn.speed;
+
+  // carrot appears at a random spot in the canvas
+  carrot.x = random(0, width);
+  carrot.vy = corn.speed;
+
+
 }
 
 // draw()
@@ -150,28 +164,68 @@ function move() {
   pig.y = pig.y + pig.vy;
 
   // move apple
-  apple.x = apple.x + apple.vx;
   apple.y = apple.y + apple.vy;
+
+  // move corn
+  corn.y = corn.y + corn.vy;
+
+  // move carrot
+  carrot.y = carrot.y + carrot.vy;
+
 }
 
 function display() {
+
+
+  // spawns apple anywhere and change the size
+  if(appleFalling === true) {
+    apple.x = random(50, width-50);
+    apple.y = -50;
+    apple.sizeWidth = random(50, 150);
+
+    appleFalling = false;
+  }
+
+  if(apple.y > height) {
+    appleFalling = true;
+  }
+
+
+
+    // spawns corn anywhere and change the size
+    if(cornFalling === true) {
+      corn.x = random(0, width-50);
+      corn.y = -50;
+      corn.sizeWidth = random(50, 250);
+      corn.sizeWidth = random(30, 350);
+
+      cornFalling = false;
+    }
+
+    if(corn.y > height) {
+      cornFalling = true;
+    }
+
+
+// spawns corn anywhere and change the size
+if (carrotFalling === true) {
+  carrot.x = random(0, width - 50);
+  carrot.y = -50;
+  carrot.sizeWidth = random(50, 250);
+  carrot.sizeWidth = random(30, 350);
+
+  carrotFalling = false;
+}
+
+if (carrot.y > height) {
+  carrotFalling = true;
+}
+
+
   // display food
   image(cornImg, corn.x, corn.y, corn.sizeWidth, corn.sizeHeight);
   image(carrotImg, carrot.x, carrot.y, carrot.sizeWidth, carrot.sizeHeight);
-
-  // spawns apple everytime and change the size
-  let x = apple.x;
-   for (let i = 0; i < 3; i++) {
   image(appleImg, apple.x, apple.y, apple.sizeWidth, apple.sizeHeight);
-    x = x + 40;
-  if (apple.y > width) {
-   apple.y = 0;
-    apple.sizeWidth = random(50, 150);
-    apple.sizeHeight = random(20, 100);
-    apple.x = random(0, height);
-    }
-  }
-
   // display the pig
   image(pigImg, pig.x, pig.y, pig.sizeWidth, pig.sizeHeight);
 }
@@ -200,19 +254,58 @@ function handleInput() {
 
 // check if a fruit is bigger than the pig
 function checkSize() {
+  // apple check size
   let d1 = dist(pig.x, pig.y, apple.x, apple.y);
   // if the fruit is bigger, the player loses
-  if (  d1 <  (pig.sizeWidth + pig.sizeHeight) / 10 +    (pig.sizeWidth + pig.sizeHeight) / 10   ){
+  if (  d1 <  (pig.sizeWidth + pig.sizeHeight) / 7 + (apple.sizeWidth + apple.sizeHeight) / 7){
     if (  (pig.sizeWidth + pig.sizeHeight) / 2 <  (apple.sizeWidth + apple.sizeHeight) / 2  ) {
       state = `lose`;
     }
   }
   // if the fruit is smaller, the pig increases its size
-  if ( d1 <(pig.sizeWidth + pig.sizeHeight) / 10 +  (pig.sizeWidth + pig.sizeHeight) / 10  ) {
+  if ( d1 <(pig.sizeWidth + pig.sizeHeight) / 7 +  (apple.sizeWidth + apple.sizeHeight) / 7  ) {
     if ((pig.sizeWidth + pig.sizeHeight) / 2 > (apple.sizeWidth + apple.sizeHeight) / 2  ) {
-      pig.sizeWidth = pig.sizeWidth + 1;
-      pig.sizeHeight = pig.sizeHeight + 1;
+      pig.sizeWidth = pig.sizeWidth + 5;
+      pig.sizeHeight = pig.sizeHeight + 5;
       oink.play();
+      appleFalling = true;
     }
   }
+
+  // corn check size
+  let d2 = dist(pig.x, pig.y, corn.x, corn.y);
+  // if the fruit is bigger, the player loses
+  if (  d2 <  (pig.sizeWidth + pig.sizeHeight) / 7 + (corn.sizeWidth + corn.sizeHeight) / 7){
+    if (  (pig.sizeWidth + pig.sizeHeight) / 2 <  (corn.sizeWidth + corn.sizeHeight) / 2  ) {
+      state = `lose`;
+    }
+  }
+  // if the fruit is smaller, the pig increases its size
+  if ( d2 <(pig.sizeWidth + pig.sizeHeight) / 7 +  (corn.sizeWidth + corn.sizeHeight) / 7  ) {
+    if ((pig.sizeWidth + pig.sizeHeight) / 2 > (corn.sizeWidth + corn.sizeHeight) / 2  ) {
+      pig.sizeWidth = pig.sizeWidth + 5;
+      pig.sizeHeight = pig.sizeHeight + 5;
+      oink.play();
+      cornFalling = true;
+    }
+  }
+
+  // corn check size
+  let d3 = dist(pig.x, pig.y, carrot.x, carrot.y);
+  // if the fruit is bigger, the player loses
+  if (  d2 <  (pig.sizeWidth + pig.sizeHeight) / 7 + (carrot.sizeWidth + carrot.sizeHeight) / 7){
+    if (  (pig.sizeWidth + pig.sizeHeight) / 2 <  (carrot.sizeWidth + carrot.sizeHeight) / 2  ) {
+      state = `lose`;
+    }
+  }
+  // if the fruit is smaller, the pig increases its size
+  if ( d2 <(pig.sizeWidth + pig.sizeHeight) / 7 +  (carrot.sizeWidth + carrot.sizeHeight) / 7  ) {
+    if ((pig.sizeWidth + pig.sizeHeight) / 2 > (carrot.sizeWidth + carrot.sizeHeight) / 2  ) {
+      pig.sizeWidth = pig.sizeWidth + 5;
+      pig.sizeHeight = pig.sizeHeight + 5;
+      oink.play();
+      carrotFalling = true;
+    }
+  }
+
 }
