@@ -4,10 +4,13 @@ Kathy Nguyen
 
 Oink effect: https://freesound.org/people/qubodup/sounds/442907/
 Wind sound: https://freesound.org/people/klankbeeld/sounds/432780/
+Game music: https://freesound.org/people/aptbr/sounds/441301/
 Here is a description of this template p5 project.
 **************************************************/
 
 let titleScreenImg;
+let howToPlayImg;
+let losingScreenImg;
 let pigImg;
 let carrotImg;
 let cornImg;
@@ -18,6 +21,7 @@ let carrotFalling;
 let cornFalling;
 let titleMusic;
 let gameMusic;
+let score = 0;
 
 let pig = {
   x: 450,
@@ -65,6 +69,8 @@ let corn = {
 
 function preload() {
   titleScreenImg = loadImage("assets/images/titleScreenImg.png");
+  howToPlayImg = loadImage("assets/images/howToPlayScreen.png");
+  losingScreenImg = loadImage("assets/images/losingScreen.png");
   pigImg = loadImage("assets/images/pig.png");
   carrotImg = loadImage("assets/images/carrot.png");
   cornImg = loadImage("assets/images/corn.png");
@@ -95,7 +101,7 @@ function setup() {
 
   titleMusic.setVolume(0.2);
   titleMusic.play();
-  gameMusic.setVolume(0.1);
+  gameMusic.setVolume(0.05);
 
 
 }
@@ -131,11 +137,16 @@ function title() {
 }
 
 function lose() {
+  push();
   background(100, 0, 0);
+  image(losingScreenImg, 0, 0, 1000, 500);
+  pop();
 }
 
 function simulation() {
   background(109, 207, 246);
+  let s = score;
+  text(s, 20,20, 100, 100);
   checkSize();
   handleInput();
   move();
@@ -143,7 +154,9 @@ function simulation() {
 }
 
 function howToPlay() {
-  background(100, 0, 0);
+  background(109, 207, 246);
+  image(howToPlayImg, 0, 0, 1000, 500);
+
 }
 
 function mousePressed() {
@@ -163,6 +176,15 @@ function mousePressed() {
     if (mouseX > 700 && mouseX < 880) {
       if (mouseY > 350 && mouseY < 460) {
         state = `howToPlay`;
+      }
+    }
+  }
+
+  // go back to the title titleScreen
+  if (state === `howToPlay`) {
+    if (mouseX > 60 && mouseX < 200) {
+      if (mouseY > 410 && mouseY < 460) {
+        state = `title`;
       }
     }
   }
@@ -206,8 +228,7 @@ function display() {
     if(cornFalling === true) {
       corn.x = random(0, width-50);
       corn.y = -50;
-      corn.sizeWidth = random(50, 250);
-      corn.sizeWidth = random(30, 350);
+      corn.sizeWidth = random(50, 300);
 
       cornFalling = false;
     }
@@ -221,8 +242,7 @@ function display() {
 if (carrotFalling === true) {
   carrot.x = random(0, width - 50);
   carrot.y = -50;
-  carrot.sizeWidth = random(50, 250);
-  carrot.sizeWidth = random(30, 350);
+  carrot.sizeWidth = random(50, 300);
 
   carrotFalling = false;
 }
@@ -275,6 +295,7 @@ function checkSize() {
   // if the food is smaller, the pig increases its size
   if ( d1 <(pig.sizeWidth + pig.sizeHeight) / 7 +  (apple.sizeWidth + apple.sizeHeight) / 7  ) {
     if ((pig.sizeWidth + pig.sizeHeight) / 2 > (apple.sizeWidth + apple.sizeHeight) / 2  ) {
+      score++;
       pig.sizeWidth = pig.sizeWidth + 5;
       pig.sizeHeight = pig.sizeHeight + 5;
       oink.play();
@@ -285,14 +306,15 @@ function checkSize() {
   // corn check size
   let d2 = dist(pig.x, pig.y, corn.x, corn.y);
   // if the food is bigger, the player loses
-  if (  d2 <  (pig.sizeWidth + pig.sizeHeight) / 7 + (corn.sizeWidth + corn.sizeHeight) / 7){
+  if (  d2 <  (pig.sizeWidth + pig.sizeHeight) / 9 + (corn.sizeWidth + corn.sizeHeight) / 9){
     if (  (pig.sizeWidth + pig.sizeHeight) / 2 <  (corn.sizeWidth + corn.sizeHeight) / 2  ) {
       state = `lose`;
     }
   }
   // if the food is smaller, the pig increases its size
-  if ( d2 <(pig.sizeWidth + pig.sizeHeight) / 7 +  (corn.sizeWidth + corn.sizeHeight) / 7  ) {
+  if ( d2 <(pig.sizeWidth + pig.sizeHeight) / 9 +  (corn.sizeWidth + corn.sizeHeight) / 9 ) {
     if ((pig.sizeWidth + pig.sizeHeight) / 2 > (corn.sizeWidth + corn.sizeHeight) / 2  ) {
+      score++;
       pig.sizeWidth = pig.sizeWidth + 5;
       pig.sizeHeight = pig.sizeHeight + 5;
       oink.play();
@@ -300,17 +322,18 @@ function checkSize() {
     }
   }
 
-  // corn check size
+  // carrot check size
   let d3 = dist(pig.x, pig.y, carrot.x, carrot.y);
   // if the food is bigger, the player loses
-  if (  d3 <  (pig.sizeWidth + pig.sizeHeight) / 7 + (carrot.sizeWidth + carrot.sizeHeight) / 7){
+  if (  d3 <  (pig.sizeWidth + pig.sizeHeight) / 8 + (carrot.sizeWidth + carrot.sizeHeight) / 8){
     if (  (pig.sizeWidth + pig.sizeHeight) / 2 <  (carrot.sizeWidth + carrot.sizeHeight) / 2  ) {
       state = `lose`;
     }
   }
   // if the food is smaller, the pig increases its size
-  if ( d3 <(pig.sizeWidth + pig.sizeHeight) / 7 +  (carrot.sizeWidth + carrot.sizeHeight) / 7  ) {
+  if ( d3 <(pig.sizeWidth + pig.sizeHeight) / 8 +  (carrot.sizeWidth + carrot.sizeHeight) / 8  ) {
     if ((pig.sizeWidth + pig.sizeHeight) / 2 > (carrot.sizeWidth + carrot.sizeHeight) / 2  ) {
+      score++;
       pig.sizeWidth = pig.sizeWidth + 5;
       pig.sizeHeight = pig.sizeHeight + 5;
       oink.play();
