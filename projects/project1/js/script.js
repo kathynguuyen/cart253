@@ -3,6 +3,7 @@ Project 01 - Hungry Piggy
 Kathy Nguyen
 
 Oink effect: https://freesound.org/people/qubodup/sounds/442907/
+Wind sound: https://freesound.org/people/klankbeeld/sounds/432780/
 Here is a description of this template p5 project.
 **************************************************/
 
@@ -15,6 +16,8 @@ let oink;
 let appleFalling;
 let carrotFalling;
 let cornFalling;
+let titleMusic;
+let gameMusic;
 
 let pig = {
   x: 450,
@@ -68,6 +71,8 @@ function preload() {
   appleImg = loadImage("assets/images/apple.png");
 
   oink = loadSound("assets/sounds/oink.wav");
+  titleMusic = loadSound("assets/sounds/windTitleScreen.wav");
+  gameMusic = loadSound("assets/sounds/gameMusic.wav");
 }
 
 let state = `title`; // title, how to play, simulation, win, lose
@@ -87,6 +92,10 @@ function setup() {
   // carrot appears at a random spot in the canvas
   carrot.x = random(0, width);
   carrot.vy = corn.speed;
+
+  titleMusic.setVolume(0.2);
+  titleMusic.play();
+  gameMusic.setVolume(0.1);
 
 
 }
@@ -127,7 +136,6 @@ function lose() {
 
 function simulation() {
   background(109, 207, 246);
-
   checkSize();
   handleInput();
   move();
@@ -144,6 +152,8 @@ function mousePressed() {
     if (mouseX > 40 && mouseX < 250) {
       if (mouseY > 400 && mouseY < 430) {
         state = `simulation`;
+        titleMusic.stop();
+        gameMusic.play();
       }
     }
   }
@@ -252,17 +262,17 @@ function handleInput() {
   pop();
 }
 
-// check if a fruit is bigger than the pig
+// check if a food is bigger than the pig
 function checkSize() {
   // apple check size
   let d1 = dist(pig.x, pig.y, apple.x, apple.y);
-  // if the fruit is bigger, the player loses
+  // if the food is bigger, the player loses
   if (  d1 <  (pig.sizeWidth + pig.sizeHeight) / 7 + (apple.sizeWidth + apple.sizeHeight) / 7){
     if (  (pig.sizeWidth + pig.sizeHeight) / 2 <  (apple.sizeWidth + apple.sizeHeight) / 2  ) {
       state = `lose`;
     }
   }
-  // if the fruit is smaller, the pig increases its size
+  // if the food is smaller, the pig increases its size
   if ( d1 <(pig.sizeWidth + pig.sizeHeight) / 7 +  (apple.sizeWidth + apple.sizeHeight) / 7  ) {
     if ((pig.sizeWidth + pig.sizeHeight) / 2 > (apple.sizeWidth + apple.sizeHeight) / 2  ) {
       pig.sizeWidth = pig.sizeWidth + 5;
@@ -274,13 +284,13 @@ function checkSize() {
 
   // corn check size
   let d2 = dist(pig.x, pig.y, corn.x, corn.y);
-  // if the fruit is bigger, the player loses
+  // if the food is bigger, the player loses
   if (  d2 <  (pig.sizeWidth + pig.sizeHeight) / 7 + (corn.sizeWidth + corn.sizeHeight) / 7){
     if (  (pig.sizeWidth + pig.sizeHeight) / 2 <  (corn.sizeWidth + corn.sizeHeight) / 2  ) {
       state = `lose`;
     }
   }
-  // if the fruit is smaller, the pig increases its size
+  // if the food is smaller, the pig increases its size
   if ( d2 <(pig.sizeWidth + pig.sizeHeight) / 7 +  (corn.sizeWidth + corn.sizeHeight) / 7  ) {
     if ((pig.sizeWidth + pig.sizeHeight) / 2 > (corn.sizeWidth + corn.sizeHeight) / 2  ) {
       pig.sizeWidth = pig.sizeWidth + 5;
@@ -292,14 +302,14 @@ function checkSize() {
 
   // corn check size
   let d3 = dist(pig.x, pig.y, carrot.x, carrot.y);
-  // if the fruit is bigger, the player loses
-  if (  d2 <  (pig.sizeWidth + pig.sizeHeight) / 7 + (carrot.sizeWidth + carrot.sizeHeight) / 7){
+  // if the food is bigger, the player loses
+  if (  d3 <  (pig.sizeWidth + pig.sizeHeight) / 7 + (carrot.sizeWidth + carrot.sizeHeight) / 7){
     if (  (pig.sizeWidth + pig.sizeHeight) / 2 <  (carrot.sizeWidth + carrot.sizeHeight) / 2  ) {
       state = `lose`;
     }
   }
-  // if the fruit is smaller, the pig increases its size
-  if ( d2 <(pig.sizeWidth + pig.sizeHeight) / 7 +  (carrot.sizeWidth + carrot.sizeHeight) / 7  ) {
+  // if the food is smaller, the pig increases its size
+  if ( d3 <(pig.sizeWidth + pig.sizeHeight) / 7 +  (carrot.sizeWidth + carrot.sizeHeight) / 7  ) {
     if ((pig.sizeWidth + pig.sizeHeight) / 2 > (carrot.sizeWidth + carrot.sizeHeight) / 2  ) {
       pig.sizeWidth = pig.sizeWidth + 5;
       pig.sizeHeight = pig.sizeHeight + 5;
