@@ -10,6 +10,7 @@ let pigImg;
 let carrotImg;
 let cornImg;
 let appleImg;
+let oink;
 
 let pig = {
   x: 450,
@@ -61,6 +62,8 @@ function preload() {
   carrotImg = loadImage("assets/images/carrot.png");
   cornImg = loadImage("assets/images/corn.png");
   appleImg = loadImage("assets/images/apple.png");
+
+  oink = loadSound("assets/sounds/oink.wav");
 }
 
 let state = `title`; // title, how to play, simulation, win, lose
@@ -209,6 +212,7 @@ function checkSize() {
     if ((pig.sizeWidth + pig.sizeHeight) / 2 > (apple.sizeWidth + apple.sizeHeight) / 2  ) {
       pig.sizeWidth = pig.sizeWidth + 1;
       pig.sizeHeight = pig.sizeHeight + 1;
+      oink.play();
     }
   }
 }
