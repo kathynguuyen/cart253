@@ -147,8 +147,8 @@ function move() {
   pig.y = pig.y + pig.vy;
 
   // move apple
-  //apple.x = apple.x + apple.vx;
-  //apple.y = apple.y + apple.vy;
+  apple.x = apple.x + apple.vx;
+  apple.y = apple.y + apple.vy;
 }
 
 function display() {
@@ -157,17 +157,17 @@ function display() {
   image(carrotImg, carrot.x, carrot.y, carrot.sizeWidth, carrot.sizeHeight);
 
   // spawns apple everytime and change the size
-  //let x = apple.x;
-  // (let i = 0; i < 3; i++) {
+  let x = apple.x;
+   for (let i = 0; i < 3; i++) {
   image(appleImg, apple.x, apple.y, apple.sizeWidth, apple.sizeHeight);
-  //  x = x + 40;
-  //  if (apple.y > width) {
-  //  apple.y = 0;
-  //  apple.sizeWidth = random(50, 150);
-  //  apple.sizeHeight = random(20, 100);
-  //  apple.x = random(0, height);
-  //}
-  //}
+    x = x + 40;
+  if (apple.y > width) {
+   apple.y = 0;
+    apple.sizeWidth = random(50, 150);
+    apple.sizeHeight = random(20, 100);
+    apple.x = random(0, height);
+    }
+  }
 
   // display the pig
   image(pigImg, pig.x, pig.y, pig.sizeWidth, pig.sizeHeight);
