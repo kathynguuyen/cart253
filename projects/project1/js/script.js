@@ -64,7 +64,7 @@ let corn = {
   sizeHeight: 100,
   vx: 0,
   vy: 0,
-  speed: 7,
+  speed: 5,
   img: cornImg,
 };
 
