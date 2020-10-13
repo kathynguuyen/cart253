@@ -399,13 +399,13 @@ function checkSize() {
   // corn check size
   let d2 = dist(pig.x, pig.y, corn.x, corn.y);
   // if the food is bigger, the player loses
-  if (  d2 <  (pig.sizeWidth + pig.sizeHeight) / 8 + (corn.sizeWidth + corn.sizeHeight) / 8){
+  if (  d2 <  (pig.sizeWidth + pig.sizeHeight) / 9 + (corn.sizeWidth + corn.sizeHeight) / 9){
     if (  (pig.sizeWidth + pig.sizeHeight) / 2 <  (corn.sizeWidth + corn.sizeHeight) / 2  ) {
       state = `lose`;
     }
   }
   // if the food is smaller, the pig increases its size
-  if ( d2 <(pig.sizeWidth + pig.sizeHeight) / 8 +  (corn.sizeWidth + corn.sizeHeight) / 8 ) {
+  if ( d2 <(pig.sizeWidth + pig.sizeHeight) / 9 +  (corn.sizeWidth + corn.sizeHeight) / 9 ) {
     if ((pig.sizeWidth + pig.sizeHeight) / 2 > (corn.sizeWidth + corn.sizeHeight) / 2  ) {
       score++;
       pig.sizeWidth = pig.sizeWidth + 5;
@@ -418,13 +418,13 @@ function checkSize() {
   // carrot check size
   let d3 = dist(pig.x, pig.y, carrot.x, carrot.y);
   // if the food is bigger, the player loses
-  if (  d3 <  (pig.sizeWidth + pig.sizeHeight) / 8 + (carrot.sizeWidth + carrot.sizeHeight) / 8){
+  if (  d3 <  (pig.sizeWidth + pig.sizeHeight) / 9 + (carrot.sizeWidth + carrot.sizeHeight) / 9){
     if (  (pig.sizeWidth + pig.sizeHeight) / 2 <  (carrot.sizeWidth + carrot.sizeHeight) / 2  ) {
       state = `lose`;
     }
   }
   // if the food is smaller, the pig increases its size
-  if ( d3 <(pig.sizeWidth + pig.sizeHeight) / 8 +  (carrot.sizeWidth + carrot.sizeHeight) / 8  ) {
+  if ( d3 <(pig.sizeWidth + pig.sizeHeight) / 9 +  (carrot.sizeWidth + carrot.sizeHeight) / 9  ) {
     if ((pig.sizeWidth + pig.sizeHeight) / 2 > (carrot.sizeWidth + carrot.sizeHeight) / 2  ) {
       score++;
       pig.sizeWidth = pig.sizeWidth + 5;
