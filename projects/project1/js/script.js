@@ -158,7 +158,6 @@ function setup() {
   titleMusic.setVolume(0.2);
   titleMusic.play();
   gameMusic.setVolume(0.05);
-  loseMusic.setVolume(0.1);
 
 
 
