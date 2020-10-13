@@ -22,7 +22,6 @@ let carrotFalling;
 let cornFalling;
 let titleMusic;
 let gameMusic;
-let loseMusic;
 let cloud1Img;
 let cloud2Img;
 let score = 0;
@@ -123,7 +122,6 @@ function preload() {
   oink = loadSound("assets/sounds/oink.wav");
   titleMusic = loadSound("assets/sounds/windTitleScreen.wav");
   gameMusic = loadSound("assets/sounds/gameMusic.wav");
-  loseMusic = loadSound("assets/sounds/loseSound.wav");
 }
 
 
