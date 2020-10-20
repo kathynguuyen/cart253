@@ -37,6 +37,7 @@ function createFish(x, y) {
     r: 0,
     g: 0,
     b: 0,
+    eaten: false
   };
   return fish;
 }
@@ -54,6 +55,11 @@ function draw() {
  // Same again for displaying
  for (let i = 0; i < school.length; i++) {
    displayFish(school[i]);
+ }
+
+ // Same again for displaying
+ for (let i = 0; i < school.length; i++) {
+   checkFish(school[i]);
  }
 
  moveBigFish();
@@ -93,9 +99,12 @@ function displayFish(fish) {
   fish.g = random(0,200);
   fish.b = random(0,200);
 
-  fill(fish.r, fish.g, fish.b);
-  noStroke();
-  ellipse(fish.x, fish.y, fish.size);
+  if(!fish.eaten) {
+    fill(fish.r, fish.g, fish.b);
+    noStroke();
+    ellipse(fish.x, fish.y, fish.size);
+  }
+
   pop();
 }
 
@@ -118,4 +127,13 @@ function mousePressed() {
   school.push(fish); // Add the fish to our array
   // Now the school array has our new fish and it will be moved and drawn
   // with all the others in the for loop!
+}
+
+function checkFish(fish) {
+  if (!fish.eaten) {
+    let d = dist(bigFish.x, bigFish.y, fish.x, fish.y);
+    if (d < bigFish.size / 2 + fish.size / 2) {
+      fish.eaten = true;
+    }
+  }
 }
