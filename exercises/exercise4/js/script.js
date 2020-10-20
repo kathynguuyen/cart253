@@ -11,7 +11,18 @@ let bigFish = {
   size: 100
 }
 
-
+let specialFish = {
+    x: 300,
+    y: 300,
+    size: 50,
+    vx: 0,
+    vy: 0,
+    speed: 2,
+    r: 0,
+    g: 300,
+    b: 0,
+    eaten: false
+}
 
 let state = `title`; // two endings
 
@@ -68,11 +79,17 @@ function draw() {
 
  moveBigFish();
  displayBigFish();
-
-checkCounter();
+ moveSpecialFish();
+ checkSpecialFish();
+ checkCounter();
+ displaySpecialFish();
 
  if (state === `endingOne`) {
    endingOne();
+ }
+
+ if (state === `endingTwo`) {
+   endingTwo();
  }
 
 
@@ -82,9 +99,18 @@ checkCounter();
 function endingOne() {
   push();
  textSize(20);
- fill(0,0,255);
+ fill(0,0,300);
  textAlign(CENTER,CENTER);
  text(`WOOHOO, you ate all the fish`, width/2, height/2);
+ pop();
+}
+
+function endingTwo() {
+  push();
+ textSize(20);
+ fill(0,0,300);
+ textAlign(CENTER,CENTER);
+ text(`OH NO, you ate the special fish`, width/2, height/2);
  pop();
 }
 
@@ -111,6 +137,41 @@ function moveFish(fish) {
   fish.x = constrain(fish.x, 0, width);
   fish.y = constrain(fish.y, 0, height);
 }
+
+function moveSpecialFish() {
+  // Choose whether to change direction
+  let change = random(0, 5);
+  if (change < 1) {
+    specialFish.vx = random(-specialFish.speed, specialFish.speed); // added fish reverse so they all go in a corner
+    specialFish.vy = random(-specialFish.speed, specialFish.speed);
+  }
+
+
+
+
+
+  // Move the fish
+  specialFish.x = specialFish.x + specialFish.vx;
+  specialFish.y = specialFish.y + specialFish.vy;
+
+
+  // Constrain the fish to the canvas
+  specialFish.x = constrain(specialFish.x, 0, width);
+  specialFish.y = constrain(specialFish.y, 0, height);
+}
+
+function displaySpecialFish() {
+  push();
+
+  if(!specialFish.eaten) {
+    fill(specialFish.r, specialFish.g, specialFish.b);
+    noStroke();
+    ellipse(specialFish.x, specialFish.y, specialFish.size);
+  }
+
+  pop();
+}
+
 
 // displayFish(fish)
 // Displays the provided fish on the canvas
@@ -158,6 +219,18 @@ function checkFish(fish) {
     if (d < bigFish.size / 2 + fish.size / 2) {
       counter++;
       fish.eaten = true;
+    }
+  }
+}
+
+
+function checkSpecialFish() {
+  if (!specialFish.eaten) {
+    let d = dist(bigFish.x, bigFish.y, specialFish.x, specialFish.y);
+    if (d < bigFish.size / 2 + specialFish.size / 2) {
+      specialFish.eaten = true;
+      noLoop();
+      state = `endingTwo`;
     }
   }
 }
