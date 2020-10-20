@@ -1,3 +1,4 @@
-# Template p5 project
+# Project 01 - Hungry Piggy
 
-This is the README file for the entire project. For more official projects you should write information here about the nature of the project, your name, any special explanations of how the project works, etc.
+
+Catch the falling food that are smaller than you. Dodge the food that are bigger than you. Get 40 points to win! 
