@@ -31,9 +31,8 @@ function createFish(x, y) {
     size: 50,
     vx: 0,
     vy: 0,
-    ax: 0,
-    ay: 0,
     speed: 2,
+    reverse: -2,
     r: 0,
     g: 0,
     b: 0,
@@ -75,9 +74,11 @@ function moveFish(fish) {
   // Choose whether to change direction
   let change = random(0, 5);
   if (change < 1) {
-    fish.vx = random(-fish.speed, fish.speed);
-    fish.vy = random(-fish.speed, fish.speed);
+    fish.vx = random(-fish.speed, fish.reverse);
+    fish.vy = random(-fish.speed, fish.reverse);
   }
+
+
 
 
 
@@ -129,6 +130,8 @@ function mousePressed() {
   // with all the others in the for loop!
 }
 
+
+// check if fish got eaten by the big fish
 function checkFish(fish) {
   if (!fish.eaten) {
     let d = dist(bigFish.x, bigFish.y, fish.x, fish.y);
