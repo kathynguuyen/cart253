@@ -2,13 +2,18 @@
 
 // Our fish
 let school = [];
-let schoolSize = 4;
+let schoolSize = 10;
+let counter = 0;
 
 let bigFish = {
   x: 0,
   y: 0,
   size: 100
 }
+
+
+
+let state = `title`; // two endings
 
 function setup() {
   createCanvas(600, 600);
@@ -64,9 +69,24 @@ function draw() {
  moveBigFish();
  displayBigFish();
 
+checkCounter();
+
+ if (state === `endingOne`) {
+   endingOne();
+ }
+
 
 }
 
+
+function endingOne() {
+  push();
+ textSize(20);
+ fill(0,0,255);
+ textAlign(CENTER,CENTER);
+ text(`WOOHOO, you ate all the fish`, width/2, height/2);
+ pop();
+}
 
 // moveFish(fish)
 // Chooses whether the provided fish changes direction and moves it
@@ -74,7 +94,7 @@ function moveFish(fish) {
   // Choose whether to change direction
   let change = random(0, 5);
   if (change < 1) {
-    fish.vx = random(-fish.speed, fish.reverse);
+    fish.vx = random(-fish.speed, fish.reverse); // added fish reverse so they all go in a corner
     fish.vy = random(-fish.speed, fish.reverse);
   }
 
@@ -136,7 +156,15 @@ function checkFish(fish) {
   if (!fish.eaten) {
     let d = dist(bigFish.x, bigFish.y, fish.x, fish.y);
     if (d < bigFish.size / 2 + fish.size / 2) {
+      counter++;
       fish.eaten = true;
     }
+  }
+}
+
+function checkCounter() {
+  if (counter === 10) {
+    noLoop();
+    state = `endingOne`;
   }
 }
