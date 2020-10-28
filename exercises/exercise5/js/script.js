@@ -44,3 +44,9 @@ function draw() {
   }
 
 }
+
+
+function mousePressed() {
+  let ball = new Ball(mouseX,mouseY);
+  balls.push(ball);
+}
