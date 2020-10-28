@@ -32,10 +32,15 @@ function draw() {
 
   for(let i = 0; i < balls.length; i++) {
     let ball = balls[i];
-    ball.gravity(gravityForce);
-    ball.move();
-    ball.bounce(paddle);
-    ball.display();
+    if (ball.active) {
+
+      ball.gravity(gravityForce);
+      ball.move();
+      ball.bounce(paddle);
+      ball.display();
+
+    }
+
   }
 
 }
