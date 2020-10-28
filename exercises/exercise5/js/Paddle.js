@@ -10,10 +10,13 @@ class Paddle {
   }
 
 
+  // make the paddle move with the mouse
   move() {
     this.x = mouseX;
   }
 
+
+  // display the paddle
   display() {
     push();
     fill(255);

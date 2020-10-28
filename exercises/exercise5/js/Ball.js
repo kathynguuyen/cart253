@@ -14,11 +14,13 @@ class Ball {
 
   }
 
-
+  // gravity of the ball
   gravity(force) {
     this.ay = this.ay + force;
   }
 
+
+  // make the ball move
   move() {
     this.vx = this.vx + this.ax;
     this.vy = this.vy + this.ay;
@@ -30,13 +32,26 @@ class Ball {
     this.y = this.y + this.vy;
   }
 
-  bounce() {
-    if(this.y + this.size/2 >= height) {
-      this.vy = -this.vy;
-      this.ay = 0;
+
+  // make the ball bounce
+  bounce(paddle) {
+    if (this.x > paddle.x - paddle.width/2 &&
+        this.x < paddle.x + paddle.width/2 &&
+        this.y + this.size/2 > paddle.y - paddle.height/2 &&
+        this.y - this.size/2 < paddle.y + paddle.height/2) {
+
+        // bounce
+          this.vy = -this.vy;
+          this.ay = 0;
+
+
     }
+
+
   }
 
+
+  // display the ball
   display() {
     push();
     fill(255,50,50);
