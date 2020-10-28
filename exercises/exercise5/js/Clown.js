@@ -15,13 +15,13 @@ class Clown {
 
   }
 
-  // gravity of the ball
+  // gravity of the clown
   gravity(force) {
     this.ay = this.ay + force;
   }
 
 
-  // make the ball move
+  // make the clown move
   move() {
     this.vx = this.vx + this.ax;
     this.vy = this.vy + this.ay;
@@ -38,7 +38,7 @@ class Clown {
   }
 
 
-  // make the ball bounce
+  // make the clown bounce
   bounce(paddle) {
     if (this.x > paddle.x - paddle.width/2 &&
         this.x < paddle.x + paddle.width/2 &&
@@ -52,14 +52,14 @@ class Clown {
         this.vy = -this.vy;
         this.ay = 0;
 
-
+        score++;
     }
 
 
   }
 
 
-  // display the ball
+  // display the clown
   display() {
     push();
     image(clownImg,this.x,this.y,this.size);

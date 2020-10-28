@@ -1,6 +1,9 @@
 "use strict";
 
 let clownImg;
+let score = 0;
+
+let state = `title`; // two endings
 
 function preload() {
 
@@ -49,6 +52,8 @@ function draw() {
   paddle.move();
   paddle.display();
 
+
+  // spawns balls
   for(let i = 0; i < balls.length; i++) {
     let ball = balls[i];
     if (ball.active) {
@@ -59,7 +64,9 @@ function draw() {
       ball.display();
 
     }
+  }
 
+    // spawns clowns
     for(let i = 0; i < clowns.length; i++) {
       let clown = clowns[i];
       if (clown.active) {
@@ -73,12 +80,39 @@ function draw() {
 
   }
 
-}
+
+
+  if (state === `endingOne`) {
+  endingOne();
+  }
+
+  checkIfTouchedClown();
+
+
+
+
 
 }
 
-
+// add another ball everytime the mouse is pressed
 function mousePressed() {
   let ball = new Ball(mouseX,mouseY);
   balls.push(ball);
+}
+
+function endingOne() {
+  push();
+ textSize(20);
+ fill(0,0,300);
+ textAlign(CENTER,CENTER);
+ text(`Yes!, you touched two clowns!!`, width/2, height/2);
+ pop();
+}
+
+
+function checkIfTouchedClown() {
+  if (score === 2) {
+    noLoop();
+    state = `endingOne`;
+  }
 }
