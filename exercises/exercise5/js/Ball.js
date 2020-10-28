@@ -14,4 +14,14 @@ class Ball {
 
   }
 
+
+  gravity(force) {
+    this.ay = this.ay + force;
+  }
+
+  move() {
+    this.vx = this.vx + this.ax;
+    this.vy = this.vy + this.ay;
+  }
+
 }
