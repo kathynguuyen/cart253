@@ -1,7 +1,8 @@
 "use strict";
 
 let clownImg;
-let score = 0;
+let clownScore = 0;
+let ballScore = 0;
 
 let state = `title`; // two endings
 
@@ -81,13 +82,16 @@ function draw() {
   }
 
 
+  checkIfTouchedClown();
+  checkIfCaughtThreeThings();
 
   if (state === `endingOne`) {
-  endingOne();
+    endingOne();
   }
 
-  checkIfTouchedClown();
-
+  if (state === `endingTwo`) {
+    endingTwo();
+  }
 
 
 
@@ -105,14 +109,32 @@ function endingOne() {
  textSize(20);
  fill(0,0,300);
  textAlign(CENTER,CENTER);
- text(`Yes!, you touched two clowns!!`, width/2, height/2);
+ text(`WOOHOO, you touched one clown`, width/2, height/2);
+ pop();
+}
+
+function endingTwo() {
+  push();
+ textSize(20);
+ fill(0,0,300);
+ textAlign(CENTER,CENTER);
+ text(`Good job!, you caught three things`, width/2, height/2);
  pop();
 }
 
 
+// check if the paddle touched one single clown, if yes endingOne
 function checkIfTouchedClown() {
-  if (score === 2) {
+  if (clownScore === 1) {
     noLoop();
     state = `endingOne`;
+  }
+}
+
+
+function checkIfCaughtThreeThings() {
+  if(clownScore + ballScore === 3) {
+    state = `endingTwo`;
+    noLoop();
   }
 }

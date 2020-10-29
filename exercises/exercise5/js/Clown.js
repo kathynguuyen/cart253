@@ -52,8 +52,11 @@ class Clown {
         this.vy = -this.vy;
         this.ay = 0;
 
-        score++;
+        clownScore++;
+
     }
+
+
 
 
   }
