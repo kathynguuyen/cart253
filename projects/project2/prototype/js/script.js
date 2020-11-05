@@ -3,6 +3,8 @@ This is a prototype of my game.
 Whenever we click the option selected, the item will appear on the screen.
 **/
 
+let circleBoolean= false;
+let squareBoolean = false;
 
 function setup() {
 
@@ -30,11 +32,18 @@ function mousePressed() {
   // display the circle when we click the circle
   if(mouseX > 272 && mouseX < 327) {
     if(mouseY > 50 && mouseY < 108)
-    displayCircle();
+    if(squareBoolean === false) {
+      displayCircle();
+      circleBoolean = true;
+    }
   }
   else if (mouseX > 100 && mouseX < 156) {
-    if(mouseY > 50 && mouseY < 108)
-    displaySquare();
+    if(mouseY > 50 && mouseY < 108) {
+      if(circleBoolean === false) {
+        displaySquare();
+        squareBoolean = true;
+      }
+    }
   }
 
 
