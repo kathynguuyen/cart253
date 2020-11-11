@@ -40,20 +40,27 @@ function setup() {
 function draw() {
   background(0);
 
+  // instructions
   push();
- fill(100);
- text(`left click and dance to itsy bitsy spdier!`,500,500);
- pop();
+  fill(190);
+  text(`left click and dance to itsy bitsy spdier!`,250,250);
+  pop();
+
+  // display spider
 
     imageMode(CENTER);
     image(spiderImg,mouseX,mouseY, 100,100);
 
 }
 
+
+// once the mouse is pressed, the music plays
 function mousePressed() {
   setInterval(playSong,500);
 }
 
+
+// play the song depending on the sequence of the array
 function playSong() {
   let note = notes[currentNote];
   synth.play(note,1,0,1);
