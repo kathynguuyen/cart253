@@ -1,9 +1,15 @@
 /**************************************************
-Template p5 project
-Pippin Barr
+Exercise 6 - Itsy Bitsy Spider
+Kathy Nguyen
 
-Here is a description of this template p5 project.
+Just a spider
 **************************************************/
+
+"use strict";
+
+let synth;
+let note = [`G4`,`C4`,`C4`,`C4`,`C5`,`D5`,`E4`,`E4`];
+
 
 // setup()
 //
