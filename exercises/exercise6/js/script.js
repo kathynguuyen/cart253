@@ -3,7 +3,7 @@ Exercise 6 - Itsy Bitsy Spider
 Kathy Nguyen
 
 Just a spider
-Press the spider to play itsy bitsy spider!
+Click the spider to play itsy bitsy spider!
 **************************************************/
 
 "use strict";
@@ -40,6 +40,10 @@ function setup() {
 function draw() {
   background(0);
 
+  push();
+ fill(100);
+ text(`left click and dance to itsy bitsy spdier!`,500,500);
+ pop();
 
     imageMode(CENTER);
     image(spiderImg,mouseX,mouseY, 100,100);
