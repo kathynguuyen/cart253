@@ -1,11 +1,21 @@
 /**
-This is a prototype of my game.
-Whenever we click the option selected, the item will appear on the screen.
+Kathy Nguyen
+Exercise 7
 **/
 
 
 let circleBoolean= false;
 let squareBoolean = false;
+
+let titleScreenImg;
+
+
+// Load images and sounds
+function preload() {
+
+  titleScreenImg = loadImage("assets/images/titleScreenImg.jpg");
+
+}
 
 function setup() {
 
@@ -56,6 +66,8 @@ function mousePressed() {
 
 }
 }
+
+
 
 
 function displayCircle() {
