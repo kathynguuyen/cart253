@@ -24,6 +24,9 @@ function setup() {
 
   createCanvas(1000,500);
 
+    resetSketch();
+    var button = createButton("reset");
+    button.mousePressed(resetSketch);
 
 }
 
@@ -70,8 +73,16 @@ function mousePressed() {
   }
 
 
-
 }
+
+
+if(mouseX > 423 && mouseX < 475) {
+  if(mouseY > 319 && mouseY < 365) {
+    state = `simulation`;
+  }
+}
+
+
 }
 
 
@@ -85,6 +96,7 @@ function displaySquare() {
   rect(200,200,55,55);
 }
 
+// temporay coordinates to know the coordinates on where to click
 function coordinates() {
   text("X: "+mouseX, 0, height/4);
   text("Y: "+mouseY, 0, height/2);
@@ -103,9 +115,8 @@ function simulation() {
   ellipse(300,80,55,55);
   rect(100, 50, 55, 55);
 
-  resetSketch();
-  var button = createButton("reset");
-  button.mousePressed(resetSketch);
+  mouseClick();
+
 
 }
 
