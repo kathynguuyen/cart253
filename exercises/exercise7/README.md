@@ -1,3 +1,5 @@
-# Template p5 project
+# Exercise 07
 
-This is the README file for the entire project. For more official projects you should write information here about the nature of the project, your name, any special explanations of how the project works, etc.
+- Added title screen
+- Organize components of bubble tea in different files 
+- Added more options to click
