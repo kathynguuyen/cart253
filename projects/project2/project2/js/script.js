@@ -52,7 +52,7 @@ function draw() {
 function mousePressed() {
 
   // cups --------------------------------------------------------
-  // display the circle when we click the circle
+  // display the first cup when we click it
   if (mouseX > 48 && mouseX < 96) {
     if (mouseY > 400 && mouseY < 490)
       if (cup2IsActive === false) {
@@ -61,7 +61,7 @@ function mousePressed() {
       }
   }
 
-  //display the square when we click the circle
+  // display the second cup when we click it
   else if (mouseX > 155 && mouseX < 213) {
     if (mouseY > 403 && mouseY < 497) {
       if (cup1IsActive === false) {
@@ -70,6 +70,9 @@ function mousePressed() {
       }
     }
   }
+
+
+
 
   // toppings --------------------------------------------------------------
   if (mouseX > 451 && mouseX < 468) {
