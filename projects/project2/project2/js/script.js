@@ -1,20 +1,17 @@
 /**
 Kathy Nguyen
-Exercise 7
+Project 2
 **/
 
-let cup1Boolean = false;
-let cup2Boolean = false;
-let topping1Boolean = false;
-let topping2Boolean = false;
-
 let titleScreenImg;
+let simulationScreenImg;
 
 let state = `title`; // title, simulation
 
-// Load images and sounds
+// Load images and sounds ----------------------------------------------------------------------------------
 function preload() {
   titleScreenImg = loadImage("assets/images/titleScreen.jpg");
+  simulationScreenImg = loadImage("assets/images/simulationScreen.jpg")
 }
 
 function setup() {
@@ -25,6 +22,8 @@ function setup() {
   button.mousePressed(resetSketch);
 }
 
+
+// draw function for the states --------------------------------------------------------------------------
 function draw() {
   // states
   if (state === `title`) {
@@ -96,19 +95,7 @@ function coordinates() {
 function resetSketch() {
   background(255, 209, 220);
 
-  // cups
-  ellipse(300, 80, 55, 55);
-  rect(100, 50, 55, 55);
 
-    text(`CUPS`,140,20,20,20);
-
-    text(`TOPPINGS`,436,20,20,20);
-
-    text(`STRAWS`,690,20,20,20);
-
-    // toppings
-    ellipse(460,80,20,20); // topping 1
-    rect(500, 50, 20, 20); // topping 2
   cup1Boolean = false;
   cup2Boolean = false;
   topping1Boolean = false;
