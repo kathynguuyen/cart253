@@ -3,15 +3,29 @@ Kathy Nguyen
 Project 2
 **/
 
+
+
+// state images --------------------------------------------------------
 let titleScreenImg;
 let simulationScreenImg;
+
+// bubble tea images
+let cup1Img;
+let cup2Img;
 
 let state = `title`; // title, simulation
 
 // Load images and sounds ----------------------------------------------------------------------------------
 function preload() {
+
+  // state images --------------------------------------
   titleScreenImg = loadImage("assets/images/titleScreen.jpg");
-  simulationScreenImg = loadImage("assets/images/simulationScreen.jpg")
+  simulationScreenImg = loadImage("assets/images/simulationScreen.jpg");
+
+  // cups images -----------------------------------
+  cup1Img = loadImage("assets/images/cup1.png");
+  cup2Img = loadImage("assets/images/cup2.png");
+
 }
 
 function setup() {
@@ -39,20 +53,20 @@ function mousePressed() {
 
   // cups --------------------------------------------------------
   // display the circle when we click the circle
-  if (mouseX > 272 && mouseX < 327) {
-    if (mouseY > 50 && mouseY < 108)
-      if (cup2Boolean === false) {
+  if (mouseX > 48 && mouseX < 96) {
+    if (mouseY > 400 && mouseY < 490)
+      if (cup2IsActive === false) {
         displayCup1();
-        cup1Boolean = true;
+        cup1IsActive = true;
       }
   }
 
   //display the square when we click the circle
-  else if (mouseX > 100 && mouseX < 156) {
-    if (mouseY > 50 && mouseY < 108) {
-      if (cup1Boolean === false) {
+  else if (mouseX > 155 && mouseX < 213) {
+    if (mouseY > 403 && mouseY < 497) {
+      if (cup1IsActive === false) {
         displayCup2();
-        cup2Boolean = true;
+        cup2IsActive = true;
       }
     }
   }
@@ -78,7 +92,7 @@ function mousePressed() {
 
 
 
-  // button to start the simulation
+  // button to start the simulation -----------------------------------
   if (mouseX > 496 && mouseX < 564) {
     if (mouseY > 243 && mouseY < 307) {
       state = `simulation`;
@@ -93,11 +107,10 @@ function coordinates() {
 }
 
 function resetSketch() {
-  background(255, 209, 220);
 
+  image(simulationScreenImg,0,0,1000,500);
 
-  cup1Boolean = false;
-  cup2Boolean = false;
-  topping1Boolean = false;
-  topping2Boolean = false;
+  cup1IsActive = false;
+  cup2IsActive = false;
+
 }

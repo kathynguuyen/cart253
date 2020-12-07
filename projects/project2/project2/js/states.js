@@ -13,12 +13,14 @@ function title() {
 function simulation() {
   push();
   image(simulationScreenImg,0,0,1000,500);
+  //coordinates();
+  mouseClick();
   pop();
 
 
 
 
-  //coordinates();
+
 
 
 }
