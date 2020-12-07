@@ -80,8 +80,8 @@ function mousePressed() {
 
 
   // button to start the simulation
-  if (mouseX > 423 && mouseX < 475) {
-    if (mouseY > 319 && mouseY < 365) {
+  if (mouseX > 496 && mouseX < 564) {
+    if (mouseY > 243 && mouseY < 307) {
       state = `simulation`;
     }
   }
