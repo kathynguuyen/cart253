@@ -22,11 +22,17 @@ let cup1TaroImg;
 let cup2MilkTeaImg;
 let cup2TaroImg;
 
+// bubble tea (toppings to fit cup 1) images -----------
+let toppingBobaCup1Img;
+let toppingStrawberryCup1Img;
+
+
 // bubble tea (toppings to fit cup 2) images -----------
 let toppingBobaCup2Img;
 let toppingStrawberryCup2Img;
 
 // bubble tea (straw for cup 2)
+let strawCup1Img;
 let strawCup2Img;
 
 
@@ -53,10 +59,13 @@ function preload() {
   cup2TaroImg = loadImage("assets/images/cup2Taro.png");
 
   // toppings images -------------------------------
+  toppingBobaCup1Img = loadImage("assets/images/topping1Cup1.png");
+  toppingStrawberryCup1Img = loadImage("assets/images/topping2Cup1.png");
   toppingBobaCup2Img = loadImage("assets/images/topping1.png");
   toppingStrawberryCup2Img = loadImage("assets/images/topping2.png");
 
   // straw images -----------------------------------
+  strawCup1Img = loadImage("assets/images/strawCup1.png");
   strawCup2Img = loadImage("assets/images/straw.png");
 
 }
@@ -150,10 +159,32 @@ function mousePressed() {
 
 
 
+  // toppings for the first cup --------------------------------------------------------------
+  if(mouseX > 567 && mouseX < 605) {
+    if (mouseY > 425 && mouseY < 460) {
+      if(toppingStrawberryCup1IsActive === false && cupChoice === 1) {
+        displayToppingBobaCup1();
+        toppingBobaCup1IsActive = true;
+      }
+    }
+  }
+
+
+  else if(mouseX > 677 && mouseX < 713) {
+    if (mouseY > 425 && mouseY < 463) {
+      if(toppingBobaCup1IsActive === false && cupChoice === 1) {
+        displayToppingStrawberryCup1();
+        toppingStrawberryCup1IsActive = true;
+      }
+    }
+  }
+
+
+
   // toppings for the second cup --------------------------------------------------------------
   if(mouseX > 567 && mouseX < 605) {
     if (mouseY > 425 && mouseY < 460) {
-      if(toppingStrawberryIsActive === false) {
+      if(toppingStrawberryCup2IsActive === false && cupChoice === 2) {
         displayToppingBobaCup2();
         toppingBobaCup2IsActive = true;
       }
@@ -163,20 +194,32 @@ function mousePressed() {
 
   else if(mouseX > 677 && mouseX < 713) {
     if (mouseY > 425 && mouseY < 463) {
-      if(toppingBobaCup2IsActive === false) {
+      if(toppingBobaCup2IsActive === false && cupChoice === 2) {
         displayToppingStrawberryCup2();
-        toppingStrawberryIsActive = true;
+        toppingStrawberryCup2IsActive = true;
       }
     }
   }
 
+
+  // straw for first cup
+  if(mouseX > 881 && mouseX < 903) {
+    if (mouseY > 400 && mouseY < 479) {
+      if(cupChoice === 1)
+        displayStrawCup1();
+        strawCup1IsActive = true;
+
+    }
+  }
+
+
   // straw for second cup
   if(mouseX > 881 && mouseX < 903) {
     if (mouseY > 400 && mouseY < 479) {
-      if(cupChoice === 2) {
+      if(cupChoice === 2)
         displayStrawCup2();
         strawCup2IsActive = true;
-      }
+
     }
   }
 
@@ -191,12 +234,9 @@ function mousePressed() {
   }
 }
 
-// temporay coordinates to know the coordinates on where to click
-function coordinates() {
-  text("X: " + mouseX, 0, height / 4);
-  text("Y: " + mouseY, 0, height / 2);
-}
 
+
+// function to reset whenever the user makes a mistake creating their bubble tea
 function resetSketch() {
 
   image(simulationScreenImg,0,0,1000,500);
@@ -212,6 +252,13 @@ function resetSketch() {
   cup2MilkTeaIsActive = false;
   cup2TaroIsActive = false;
 
+
+  toppingBobaCup1IsActive = false;
+  toppingStrawberryCup1IsActive = false;
+  toppingBobaCup2IsActive = false;
+  toppingStrawberryCup2IsActive = false;
+
+  strawCup1IsActive = false;
   strawCup2IsActive = false;
 
 
