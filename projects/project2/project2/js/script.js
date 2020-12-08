@@ -9,9 +9,21 @@ Project 2
 let titleScreenImg;
 let simulationScreenImg;
 
-// bubble tea images
+// bubble tea (cups) images --------------------------------------------
 let cup1Img;
 let cup2Img;
+
+
+// bubble tea (flavors to fit cup 1) images ---------------------------
+let cup1MilkTeaImg;
+let cup1TaroImg;
+
+// bubble tea (flavors to fit cup 2) images ---------------------------
+let cup2MilkTeaImg;
+let cup2TaroImg;
+
+
+
 
 let state = `title`; // title, simulation
 
@@ -25,6 +37,10 @@ function preload() {
   // cups images -----------------------------------
   cup1Img = loadImage("assets/images/cup1.png");
   cup2Img = loadImage("assets/images/cup2.png");
+
+  // flavor images --------------------------------
+  cup2MilkTeaImg = loadImage("assets/images/cup2MilkTea.png");
+  cup2TaroImg = loadImage("assets/images/cup2Taro.png");
 
 }
 
@@ -49,6 +65,7 @@ function draw() {
   }
 }
 
+
 function mousePressed() {
 
   // cups --------------------------------------------------------
@@ -58,6 +75,7 @@ function mousePressed() {
       if (cup2IsActive === false) {
         displayCup1();
         cup1IsActive = true;
+        cupChoice = 1;
       }
   }
 
@@ -67,9 +85,32 @@ function mousePressed() {
       if (cup1IsActive === false) {
         displayCup2();
         cup2IsActive = true;
+        cupChoice = 2;
       }
     }
   }
+
+
+  // flavors ---------------------------------------------------
+  if(mouseX > 313 && mouseX < 364) {
+    if (mouseY > 420 && mouseY < 471) {
+      if(cup2TaroIsActive === false && cupChoice === 2) {
+        displayCup2MT();
+        cup2MilkTeaIsActive = true;
+      }
+    }
+  }
+
+
+  else if(mouseX > 406 && mouseX < 452) {
+    if (mouseY > 418 && mouseY < 469) {
+      if(cup2MilkTeaIsActive === false && cupChoice === 2) {
+        displayCup2Taro();
+        cup2TaroIsActive = true;
+      }
+    }
+  }
+
 
 
 
@@ -113,7 +154,14 @@ function resetSketch() {
 
   image(simulationScreenImg,0,0,1000,500);
 
+  // reset the variables
+  cupChoice = 0;
+
   cup1IsActive = false;
   cup2IsActive = false;
+
+  cup2MilkTeaIsActive = false;
+  cup2TaroIsActive = false;
+
 
 }

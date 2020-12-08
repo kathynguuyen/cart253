@@ -3,6 +3,9 @@
 let cup1IsActive = false;
 let cup2IsActive = false;
 
+// to know which cup the user picked to fit the proportion well
+let cupChoice;
+
 
 
 function displayCup1() {
