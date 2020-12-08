@@ -2,7 +2,7 @@
 Kathy Nguyen
 Project 2
 
-Used code from my exercise 5 to make the raining bubbles. 
+Used code from my exercise 5 to make the raining bubbles.
 **/
 
 "use strict";
@@ -40,9 +40,9 @@ let strawCup2Img;
 // raining boba
 let bobaImg;
 
-let flyingBobas[];
-let gravityForce = 0.1;
-let numBobas = 50;
+let flyingBobas = [];
+let gravityForce = 0.025;
+let numBobas = 10;
 
 
 
@@ -85,9 +85,22 @@ function preload() {
 function setup() {
   createCanvas(1000, 500);
 
+
+
   resetSketch();
   var button = createButton("reset");
   button.mousePressed(resetSketch);
+
+  for(let i = 0; i< numBobas; i++) {
+    let x = random(0,1000);
+    let y = random(-400,-100);
+    let boba = new Boba(x,y);
+    flyingBobas.push(boba);
+  }
+
+
+
+
 }
 
 
