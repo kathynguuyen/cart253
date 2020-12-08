@@ -22,6 +22,14 @@ let cup1TaroImg;
 let cup2MilkTeaImg;
 let cup2TaroImg;
 
+// bubble tea (toppings to fit cup 2) images -----------
+let toppingBobaCup2Img;
+let toppingStrawberryCup2Img;
+
+// bubble tea (straw for cup 2)
+let strawCup2Img;
+
+
 
 
 
@@ -41,6 +49,13 @@ function preload() {
   // flavor images --------------------------------
   cup2MilkTeaImg = loadImage("assets/images/cup2MilkTea.png");
   cup2TaroImg = loadImage("assets/images/cup2Taro.png");
+
+  // toppings images -------------------------------
+  toppingBobaCup2Img = loadImage("assets/images/topping1.png");
+  toppingStrawberryCup2Img = loadImage("assets/images/topping2.png");
+
+  // straw images -----------------------------------
+  strawCup2Img = loadImage("assets/images/straw.png");
 
 }
 
@@ -91,7 +106,7 @@ function mousePressed() {
   }
 
 
-  // flavors ---------------------------------------------------
+  // flavors for the second cup ---------------------------------------------------
   if(mouseX > 313 && mouseX < 364) {
     if (mouseY > 420 && mouseY < 471) {
       if(cup2TaroIsActive === false && cupChoice === 2) {
@@ -113,26 +128,36 @@ function mousePressed() {
 
 
 
-
-
-  // toppings --------------------------------------------------------------
-  if (mouseX > 451 && mouseX < 468) {
-    if (mouseY > 72 && mouseY < 90)
-      if (topping2Boolean === false) {
-        displayTopping1();
-        topping1Boolean = true;
-      }
-  }
-
-
-  else if (mouseX > 500 && mouseX < 520) {
-    if (mouseY > 50 && mouseY < 70) {
-      if (topping1Boolean === false) {
-        displayTopping2();
-        topping2Boolean = true;
+  // toppings for the second cup --------------------------------------------------------------
+  if(mouseX > 567 && mouseX < 605) {
+    if (mouseY > 425 && mouseY < 460) {
+      if(toppingStrawberryIsActive === false) {
+        displayToppingBobaCup2();
+        toppingBobaCup2IsActive = true;
       }
     }
   }
+
+
+  else if(mouseX > 677 && mouseX < 713) {
+    if (mouseY > 425 && mouseY < 463) {
+      if(toppingBobaCup2IsActive === false) {
+        displayToppingStrawberryCup2();
+        toppingStrawberryIsActive = true;
+      }
+    }
+  }
+
+  // straw for second cup
+  if(mouseX > 313 && mouseX < 364) {
+    if (mouseY > 420 && mouseY < 471) {
+      if(cup2TaroIsActive === false && cupChoice === 2) {
+        displayCup2MT();
+        cup2MilkTeaIsActive = true;
+      }
+    }
+  }
+
 
 
 

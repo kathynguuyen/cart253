@@ -1,14 +1,14 @@
-let topping1IsActive = false;
-let topping2IsActive = false;
+// boolean for flavors
+let toppingBobaCup2IsActive = false;
+let toppingStrawberryIsActive = false;
 
 
 
-
-
-function displayTopping1() {
-  ellipse(210,210,20,20);
+function displayToppingBobaCup2() {
+  image(toppingBobaCup2Img,0,0,1000,500);
 }
 
-function displayTopping2() {
-  rect(210,210,20,20);
+
+function displayToppingStrawberryCup2() {
+  image(toppingStrawberryCup2Img,0,0,1000,500);
 }
