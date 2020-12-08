@@ -44,8 +44,8 @@ let choiceNumber = 0;
 let bobaImg;
 
 let flyingBobas = [];
-let gravityForce = 0.0025;
-let numBobas = 10;
+let gravityForce = 0.0015;
+let numBobas = 12;
 
 
 
