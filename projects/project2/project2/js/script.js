@@ -1,9 +1,11 @@
 /**
 Kathy Nguyen
 Project 2
+
+Used code from my exercise 5 to make the raining bubbles. 
 **/
 
-
+"use strict";
 
 // state images --------------------------------------------------------
 let titleScreenImg;
@@ -34,6 +36,13 @@ let toppingStrawberryCup2Img;
 // bubble tea (straw for cup 2)
 let strawCup1Img;
 let strawCup2Img;
+
+// raining boba
+let bobaImg;
+
+let flyingBobas[];
+let gravityForce = 0.1;
+let numBobas = 50;
 
 
 
@@ -67,6 +76,9 @@ function preload() {
   // straw images -----------------------------------
   strawCup1Img = loadImage("assets/images/strawCup1.png");
   strawCup2Img = loadImage("assets/images/straw.png");
+
+  // raining boba image
+  bobaImg = loadImage("assets/images/boba.png");
 
 }
 
