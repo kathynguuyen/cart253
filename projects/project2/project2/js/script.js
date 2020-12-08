@@ -47,6 +47,8 @@ function preload() {
   cup2Img = loadImage("assets/images/cup2.png");
 
   // flavor images --------------------------------
+  cup1MilkTeaImg = loadImage("assets/images/cup1MilkTea.png");
+  cup1TaroImg = loadImage("assets/images/cup1Taro.png");
   cup2MilkTeaImg = loadImage("assets/images/cup2MilkTea.png");
   cup2TaroImg = loadImage("assets/images/cup2Taro.png");
 
@@ -106,6 +108,26 @@ function mousePressed() {
   }
 
 
+  // flavors for the first cup ---------------------------------------------------
+  if(mouseX > 313 && mouseX < 364) {
+    if (mouseY > 420 && mouseY < 471) {
+      if(cup1TaroIsActive === false && cupChoice === 1) {
+        displayCup1MT();
+        cup1MilkTeaIsActive = true;
+      }
+    }
+  }
+
+
+  else if(mouseX > 406 && mouseX < 452) {
+    if (mouseY > 418 && mouseY < 469) {
+      if(cup1MilkTeaIsActive === false && cupChoice === 1) {
+        displayCup1Taro();
+        cup1TaroIsActive = true;
+      }
+    }
+  }
+
   // flavors for the second cup ---------------------------------------------------
   if(mouseX > 313 && mouseX < 364) {
     if (mouseY > 420 && mouseY < 471) {
@@ -149,11 +171,11 @@ function mousePressed() {
   }
 
   // straw for second cup
-  if(mouseX > 313 && mouseX < 364) {
-    if (mouseY > 420 && mouseY < 471) {
-      if(cup2TaroIsActive === false && cupChoice === 2) {
-        displayCup2MT();
-        cup2MilkTeaIsActive = true;
+  if(mouseX > 881 && mouseX < 903) {
+    if (mouseY > 400 && mouseY < 479) {
+      if(cupChoice === 2) {
+        displayStrawCup2();
+        strawCup2IsActive = true;
       }
     }
   }
@@ -185,8 +207,12 @@ function resetSketch() {
   cup1IsActive = false;
   cup2IsActive = false;
 
+  cup1MilkTeaIsActive = false;
+  cup1TaroIsActive = false;
   cup2MilkTeaIsActive = false;
   cup2TaroIsActive = false;
+
+  strawCup2IsActive = false;
 
 
 }
