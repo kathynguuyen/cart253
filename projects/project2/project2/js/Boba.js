@@ -9,6 +9,7 @@ class Boba {
     this.ay = 0;
     this.maxSpeed = 5;
     this.size = 50;
+    this.size2 = 50;
     this.active = true;
   }
 
@@ -42,7 +43,7 @@ class Boba {
 
   display() {
     push();
-    image(bobaImg,this.x,this.y,this.size);
+    image(bobaImg,this.x,this.y,this.size,this.size2);
     pop();
   }
 

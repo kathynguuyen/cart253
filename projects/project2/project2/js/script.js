@@ -37,11 +37,14 @@ let toppingStrawberryCup2Img;
 let strawCup1Img;
 let strawCup2Img;
 
+// to know when the user is done
+let choiceNumber = 0;
+
 // raining boba
 let bobaImg;
 
 let flyingBobas = [];
-let gravityForce = 0.025;
+let gravityForce = 0.0025;
 let numBobas = 10;
 
 
@@ -92,11 +95,12 @@ function setup() {
   button.mousePressed(resetSketch);
 
   for(let i = 0; i< numBobas; i++) {
-    let x = random(0,1000);
+    let x = random(0,width);
     let y = random(-400,-100);
     let boba = new Boba(x,y);
     flyingBobas.push(boba);
   }
+
 
 
 
@@ -114,6 +118,8 @@ function draw() {
   if (state === `simulation`) {
     simulation();
   }
+
+
 }
 
 
@@ -137,6 +143,7 @@ function mousePressed() {
         displayCup2();
         cup2IsActive = true;
         cupChoice = 2;
+
       }
     }
   }
@@ -222,6 +229,7 @@ function mousePressed() {
       if(toppingBobaCup2IsActive === false && cupChoice === 2) {
         displayToppingStrawberryCup2();
         toppingStrawberryCup2IsActive = true;
+
       }
     }
   }
@@ -257,8 +265,8 @@ function mousePressed() {
       state = `simulation`;
     }
   }
-}
 
+}
 
 
 // function to reset whenever the user makes a mistake creating their bubble tea
