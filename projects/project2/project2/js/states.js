@@ -30,13 +30,3 @@ function simulation() {
     pop();
 
   }
-
-
-  function ending() {
-
-    push();
-    background(100,100,1000);
-
-
-    pop();
-  }

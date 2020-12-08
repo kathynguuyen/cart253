@@ -268,8 +268,8 @@ function mousePressed() {
 
 
   // straw for first cup
-  if(mouseX > 881 && mouseX < 903) {
-    if (mouseY > 400 && mouseY < 479) {
+  if(mouseX > 870 && mouseX < 903) {
+    if (mouseY > 400 && mouseY < 490) {
       if(cupChoice === 1)
         displayStrawCup1();
         strawCup1IsActive = true;
@@ -280,8 +280,8 @@ function mousePressed() {
 
 
   // straw for second cup
-  if(mouseX > 881 && mouseX < 903) {
-    if (mouseY > 400 && mouseY < 479) {
+  if(mouseX > 870 && mouseX < 903) {
+    if (mouseY > 400 && mouseY < 490) {
       if(cupChoice === 2)
         displayStrawCup2();
         strawCup2IsActive = true;
