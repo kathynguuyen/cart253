@@ -1,4 +1,4 @@
-# Exercise 07
+# Project 02: Bubble Tea!
 
 - Added title screen
 - Organize components of bubble tea in different files 
