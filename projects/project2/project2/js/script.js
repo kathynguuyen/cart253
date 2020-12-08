@@ -2,7 +2,7 @@
 Kathy Nguyen
 Project 2
 
-Used code from my exercise 5 to make the raining bubbles.
+Used code from my exercise 5 to make the bouncing bubbles.
 **/
 
 "use strict";
@@ -39,6 +39,10 @@ let strawCup2Img;
 
 // to know when the user is done
 let choiceNumber = 0;
+
+// music and sound effect  -------------------------
+let themeMusic;
+let clickEffect;
 
 // raining boba
 let bobaImg;
@@ -80,9 +84,13 @@ function preload() {
   strawCup1Img = loadImage("assets/images/strawCup1.png");
   strawCup2Img = loadImage("assets/images/straw.png");
 
-  // raining boba image
+  // raining boba image ----------------------------
   bobaImg = loadImage("assets/images/boba.png");
 
+
+  // music and sound effects ----------------------------
+  themeMusic = loadSound("assets/sounds/themeMusic.mp3");
+  clickEffect = loadSound("assets/sounds/clickEffect.wav");
 }
 
 function setup() {
@@ -100,6 +108,10 @@ function setup() {
     let boba = new Boba(x,y);
     flyingBobas.push(boba);
   }
+
+
+
+  themeMusic.setVolume(0.05);
 
 
 
@@ -130,6 +142,8 @@ function mousePressed() {
   if (mouseX > 48 && mouseX < 96) {
     if (mouseY > 400 && mouseY < 490)
       if (cup2IsActive === false) {
+        clickEffect.play();
+
         displayCup1();
         cup1IsActive = true;
         cupChoice = 1;
@@ -140,6 +154,8 @@ function mousePressed() {
   else if (mouseX > 155 && mouseX < 213) {
     if (mouseY > 403 && mouseY < 497) {
       if (cup1IsActive === false) {
+        clickEffect.play();
+
         displayCup2();
         cup2IsActive = true;
         cupChoice = 2;
@@ -153,6 +169,8 @@ function mousePressed() {
   if(mouseX > 313 && mouseX < 364) {
     if (mouseY > 420 && mouseY < 471) {
       if(cup1TaroIsActive === false && cupChoice === 1) {
+        clickEffect.play();
+
         displayCup1MT();
         cup1MilkTeaIsActive = true;
       }
@@ -163,6 +181,8 @@ function mousePressed() {
   else if(mouseX > 406 && mouseX < 452) {
     if (mouseY > 418 && mouseY < 469) {
       if(cup1MilkTeaIsActive === false && cupChoice === 1) {
+        clickEffect.play();
+
         displayCup1Taro();
         cup1TaroIsActive = true;
       }
@@ -173,6 +193,8 @@ function mousePressed() {
   if(mouseX > 313 && mouseX < 364) {
     if (mouseY > 420 && mouseY < 471) {
       if(cup2TaroIsActive === false && cupChoice === 2) {
+        clickEffect.play();
+
         displayCup2MT();
         cup2MilkTeaIsActive = true;
       }
@@ -183,6 +205,8 @@ function mousePressed() {
   else if(mouseX > 406 && mouseX < 452) {
     if (mouseY > 418 && mouseY < 469) {
       if(cup2MilkTeaIsActive === false && cupChoice === 2) {
+        clickEffect.play();
+
         displayCup2Taro();
         cup2TaroIsActive = true;
       }
@@ -195,6 +219,8 @@ function mousePressed() {
   if(mouseX > 567 && mouseX < 605) {
     if (mouseY > 425 && mouseY < 460) {
       if(toppingStrawberryCup1IsActive === false && cupChoice === 1) {
+        clickEffect.play();
+
         displayToppingBobaCup1();
         toppingBobaCup1IsActive = true;
       }
@@ -205,6 +231,8 @@ function mousePressed() {
   else if(mouseX > 677 && mouseX < 713) {
     if (mouseY > 425 && mouseY < 463) {
       if(toppingBobaCup1IsActive === false && cupChoice === 1) {
+        clickEffect.play();
+
         displayToppingStrawberryCup1();
         toppingStrawberryCup1IsActive = true;
       }
@@ -217,6 +245,8 @@ function mousePressed() {
   if(mouseX > 567 && mouseX < 605) {
     if (mouseY > 425 && mouseY < 460) {
       if(toppingStrawberryCup2IsActive === false && cupChoice === 2) {
+        clickEffect.play();
+
         displayToppingBobaCup2();
         toppingBobaCup2IsActive = true;
       }
@@ -227,6 +257,8 @@ function mousePressed() {
   else if(mouseX > 677 && mouseX < 713) {
     if (mouseY > 425 && mouseY < 463) {
       if(toppingBobaCup2IsActive === false && cupChoice === 2) {
+        clickEffect.play();
+
         displayToppingStrawberryCup2();
         toppingStrawberryCup2IsActive = true;
 
@@ -241,6 +273,7 @@ function mousePressed() {
       if(cupChoice === 1)
         displayStrawCup1();
         strawCup1IsActive = true;
+        clickEffect.play();
 
     }
   }
@@ -252,6 +285,7 @@ function mousePressed() {
       if(cupChoice === 2)
         displayStrawCup2();
         strawCup2IsActive = true;
+        clickEffect.play();
 
     }
   }
@@ -263,6 +297,8 @@ function mousePressed() {
   if (mouseX > 496 && mouseX < 564) {
     if (mouseY > 243 && mouseY < 307) {
       state = `simulation`;
+      themeMusic.play();
+      themeMusic.loop();
     }
   }
 
