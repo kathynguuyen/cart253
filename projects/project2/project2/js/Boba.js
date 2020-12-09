@@ -1,5 +1,8 @@
+// class boba to make the boucing tapiocal balls
 class Boba {
 
+
+  // constructor method for the tapioca ball
   constructor(x,y) {
     this.x = x;
     this.y = y;
@@ -14,11 +17,13 @@ class Boba {
   }
 
 
-
+  // gravity force of the tapioca ball
   gravity(force) {
     this.ay = this.ay + force;
   }
 
+
+  // make the tapioca ball move
   move() {
     this.vx = this.vx + this.ax;
     this.vy = this.vy + this.ay;
@@ -32,7 +37,7 @@ class Boba {
 
   }
 
-
+  // make the tapioca ball bounce
  bounce() {
    if(this.y + this.size/2 >= height) {
      this.vy = -this.vy;
@@ -40,7 +45,7 @@ class Boba {
    }
  }
 
-
+ // display the tapioca ball
   display() {
     push();
     image(bobaImg,this.x,this.y,this.size,this.size2);

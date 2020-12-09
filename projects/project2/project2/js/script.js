@@ -15,7 +15,6 @@ let simulationScreenImg;
 let cup1Img;
 let cup2Img;
 
-
 // bubble tea (flavors to fit cup 1) images ---------------------------
 let cup1MilkTeaImg;
 let cup1TaroImg;
@@ -27,7 +26,6 @@ let cup2TaroImg;
 // bubble tea (toppings to fit cup 1) images -----------
 let toppingBobaCup1Img;
 let toppingStrawberryCup1Img;
-
 
 // bubble tea (toppings to fit cup 2) images -----------
 let toppingBobaCup2Img;
@@ -47,19 +45,15 @@ let clickEffect;
 // raining boba
 let bobaImg;
 
+// array of tapioca balls
 let flyingBobas = [];
 let gravityForce = 0.0015;
 let numBobas = 12;
-
-
-
-
 
 let state = `title`; // title, simulation
 
 // Load images and sounds ----------------------------------------------------------------------------------
 function preload() {
-
   // state images --------------------------------------
   titleScreenImg = loadImage("assets/images/titleScreen.jpg");
   simulationScreenImg = loadImage("assets/images/simulationScreen.jpg");
@@ -87,38 +81,31 @@ function preload() {
   // raining boba image ----------------------------
   bobaImg = loadImage("assets/images/boba.png");
 
-
   // music and sound effects ----------------------------
   themeMusic = loadSound("assets/sounds/themeMusic.mp3");
   clickEffect = loadSound("assets/sounds/clickEffect.wav");
 }
 
+// setup the canvas, reset function and the bouncing tapioca balls
 function setup() {
   createCanvas(1000, 500);
 
-
-
+  // function to reset the sketch when user makes a mistake
   resetSketch();
   var button = createButton("reset");
   button.mousePressed(resetSketch);
 
-  for(let i = 0; i< numBobas; i++) {
-    let x = random(0,width);
-    let y = random(-400,-100);
-    let boba = new Boba(x,y);
+  // initializing the tapioca balls and put them in an array
+  for (let i = 0; i < numBobas; i++) {
+    let x = random(0, width);
+    let y = random(-400, -100);
+    let boba = new Boba(x, y);
     flyingBobas.push(boba);
   }
 
-
-
+  // volume for the music
   themeMusic.setVolume(0.05);
-
-
-
-
-
 }
-
 
 // draw function for the states --------------------------------------------------------------------------
 function draw() {
@@ -130,13 +117,11 @@ function draw() {
   if (state === `simulation`) {
     simulation();
   }
-
-
 }
 
-
+// function when the mouse is pressed
 function mousePressed() {
-
+  // all the functions below are so when the user press a certain thing it will display and whenever a component of the bubble tea is already selected it won't let them pick something twice.
   // cups --------------------------------------------------------
   // display the first cup when we click it
   if (mouseX > 48 && mouseX < 96) {
@@ -146,7 +131,7 @@ function mousePressed() {
 
         displayCup1();
         cup1IsActive = true;
-        cupChoice = 1;
+        cupChoice = 1; // to know the cup choice so the flavors, toppings and straw fit the right cup
       }
   }
 
@@ -159,52 +144,41 @@ function mousePressed() {
         displayCup2();
         cup2IsActive = true;
         cupChoice = 2;
-
       }
     }
   }
 
-
   // flavors for the first cup ---------------------------------------------------
-  if(mouseX > 313 && mouseX < 364) {
+  if (mouseX > 313 && mouseX < 364) {
     if (mouseY > 420 && mouseY < 471) {
-      if(cup1TaroIsActive === false && cupChoice === 1) {
+      if (cup1TaroIsActive === false && cupChoice === 1) {
         clickEffect.play();
-
         displayCup1MT();
         cup1MilkTeaIsActive = true;
       }
     }
-  }
-
-
-  else if(mouseX > 406 && mouseX < 452) {
+  } else if (mouseX > 406 && mouseX < 452) {
     if (mouseY > 418 && mouseY < 469) {
-      if(cup1MilkTeaIsActive === false && cupChoice === 1) {
+      if (cup1MilkTeaIsActive === false && cupChoice === 1) {
         clickEffect.play();
-
         displayCup1Taro();
         cup1TaroIsActive = true;
       }
     }
   }
 
-  // flavors for the second cup ---------------------------------------------------
-  if(mouseX > 313 && mouseX < 364) {
+  // flavors for the second cup when clicked ---------------------------------------------------
+  if (mouseX > 313 && mouseX < 364) {
     if (mouseY > 420 && mouseY < 471) {
-      if(cup2TaroIsActive === false && cupChoice === 2) {
+      if (cup2TaroIsActive === false && cupChoice === 2) {
         clickEffect.play();
-
         displayCup2MT();
         cup2MilkTeaIsActive = true;
       }
     }
-  }
-
-
-  else if(mouseX > 406 && mouseX < 452) {
+  } else if (mouseX > 406 && mouseX < 452) {
     if (mouseY > 418 && mouseY < 469) {
-      if(cup2MilkTeaIsActive === false && cupChoice === 2) {
+      if (cup2MilkTeaIsActive === false && cupChoice === 2) {
         clickEffect.play();
 
         displayCup2Taro();
@@ -213,24 +187,19 @@ function mousePressed() {
     }
   }
 
-
-
-  // toppings for the first cup --------------------------------------------------------------
-  if(mouseX > 567 && mouseX < 605) {
+  // toppings for the first cup when clicked  --------------------------------------------------------------
+  if (mouseX > 567 && mouseX < 605) {
     if (mouseY > 425 && mouseY < 460) {
-      if(toppingStrawberryCup1IsActive === false && cupChoice === 1) {
+      if (toppingStrawberryCup1IsActive === false && cupChoice === 1) {
         clickEffect.play();
 
         displayToppingBobaCup1();
         toppingBobaCup1IsActive = true;
       }
     }
-  }
-
-
-  else if(mouseX > 677 && mouseX < 713) {
+  } else if (mouseX > 677 && mouseX < 713) {
     if (mouseY > 425 && mouseY < 463) {
-      if(toppingBobaCup1IsActive === false && cupChoice === 1) {
+      if (toppingBobaCup1IsActive === false && cupChoice === 1) {
         clickEffect.play();
 
         displayToppingStrawberryCup1();
@@ -239,59 +208,44 @@ function mousePressed() {
     }
   }
 
-
-
   // toppings for the second cup --------------------------------------------------------------
-  if(mouseX > 567 && mouseX < 605) {
+  if (mouseX > 567 && mouseX < 605) {
     if (mouseY > 425 && mouseY < 460) {
-      if(toppingStrawberryCup2IsActive === false && cupChoice === 2) {
+      if (toppingStrawberryCup2IsActive === false && cupChoice === 2) {
         clickEffect.play();
 
         displayToppingBobaCup2();
         toppingBobaCup2IsActive = true;
       }
     }
-  }
-
-
-  else if(mouseX > 677 && mouseX < 713) {
+  } else if (mouseX > 677 && mouseX < 713) {
     if (mouseY > 425 && mouseY < 463) {
-      if(toppingBobaCup2IsActive === false && cupChoice === 2) {
+      if (toppingBobaCup2IsActive === false && cupChoice === 2) {
         clickEffect.play();
 
         displayToppingStrawberryCup2();
         toppingStrawberryCup2IsActive = true;
-
       }
     }
   }
 
-
-  // straw for first cup
-  if(mouseX > 870 && mouseX < 903) {
+  // straw for first cup ---------------------------------
+  if (mouseX > 870 && mouseX < 903) {
     if (mouseY > 400 && mouseY < 490) {
-      if(cupChoice === 1)
-        displayStrawCup1();
-        strawCup1IsActive = true;
-        clickEffect.play();
-
+      if (cupChoice === 1) displayStrawCup1();
+      strawCup1IsActive = true;
+      clickEffect.play();
     }
   }
 
-
-  // straw for second cup
-  if(mouseX > 870 && mouseX < 903) {
+  // straw for second cup -------------------------------------
+  if (mouseX > 870 && mouseX < 903) {
     if (mouseY > 400 && mouseY < 490) {
-      if(cupChoice === 2)
-        displayStrawCup2();
-        strawCup2IsActive = true;
-        clickEffect.play();
-
+      if (cupChoice === 2) displayStrawCup2();
+      strawCup2IsActive = true;
+      clickEffect.play();
     }
   }
-
-
-
 
   // button to start the simulation -----------------------------------
   if (mouseX > 496 && mouseX < 564) {
@@ -301,18 +255,16 @@ function mousePressed() {
       themeMusic.loop();
     }
   }
-
 }
-
 
 // function to reset whenever the user makes a mistake creating their bubble tea
 function resetSketch() {
-
-  image(simulationScreenImg,0,0,1000,500);
+  image(simulationScreenImg, 0, 0, 1000, 500);
 
   // reset the variables
   cupChoice = 0;
 
+  // resetting the booleans
   cup1IsActive = false;
   cup2IsActive = false;
 
@@ -321,7 +273,6 @@ function resetSketch() {
   cup2MilkTeaIsActive = false;
   cup2TaroIsActive = false;
 
-
   toppingBobaCup1IsActive = false;
   toppingStrawberryCup1IsActive = false;
   toppingBobaCup2IsActive = false;
@@ -329,6 +280,4 @@ function resetSketch() {
 
   strawCup1IsActive = false;
   strawCup2IsActive = false;
-
-
 }

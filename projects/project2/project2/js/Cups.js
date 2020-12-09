@@ -1,3 +1,4 @@
+// seperate file for the cups
 
 // booleans for cups
 let cup1IsActive = false;

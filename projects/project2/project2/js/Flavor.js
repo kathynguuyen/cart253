@@ -1,3 +1,5 @@
+// seperate file for the flavors
+
 // boolean for flavors
 let cup1MilkTeaIsActive = false;
 let cup1TaroIsActive = false;
